@@ -32,7 +32,7 @@ nav {
 
 .side-nav {
   margin-top: 64px;
-  z-index: 4; }
+  z-index: 6; }
 
 .container h1,
 .container h2,
@@ -178,7 +178,8 @@ video {
 
 .project-card {
   width: 425px;
-  max-width: 425px; }
+  max-width: 425px;
+  min-width: 400px; }
   .project-card .card-content .project-desc {
     font-size: 12px; }
   .project-card .project-name {
@@ -229,8 +230,10 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap; }
-  .results .user-card, .results .project-card, .results .project-card {
+  .results .user-card, .results .project-card {
     flex-basis: 24%; }
+  .results .project-card {
+    flex-basis: 33%; }
   .results .pagination {
     width: 100%;
     text-align: center; }
