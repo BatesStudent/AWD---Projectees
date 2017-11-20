@@ -1,0 +1,324 @@
+$greyText: #585858;
+
+body {
+	color: $greyText;
+}
+
+nav {
+
+	z-index: 5;
+	position: relative;
+	.nav-wrapper {
+		padding: 0 10px;
+		padding-left: 310px;
+		.brand-logo {
+			height: 100%;
+			padding: 10px;
+			img {
+				height: 100%;
+			}
+		}
+		.btn,
+		.btn-large {
+			background-color: grey;
+		}
+		.search-form {
+			max-width: 500px;
+			width: 100%;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			display: inline-block;
+		}
+
+	}
+}
+
+.input-field {
+	label {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+	}
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+	background-color: inherit;
+}
+
+.side-nav {
+	margin-top: 64px;
+	z-index: 4;
+}
+
+.container {
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: 'Poiret One';
+	}
+	h1 {
+		margin: 50px 0;
+		line-height: 100%;
+		font-size: 60px;
+	}
+	h2 {
+		margin: 50px 0 40px;
+	}
+	p {
+		max-width: 550px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.row {
+		margin-top: 30px;
+	}
+}
+
+.full-height {
+	min-height: 50vh;
+	.centered-content {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.circle-bottom-section {
+	padding-bottom: 50px;
+}
+
+.circle-top-section {
+	padding-top: 50px;
+}
+
+.rect-container {
+	display: flex;
+	flex-wrap: wrap;
+	height: calc(300px + .5rem);
+	justify-content: space-between;
+	margin-top: .5rem;
+}
+
+.rect1 {
+	min-width: 100%; //border-width: 10px;
+	//border-style: solid;
+	border-color: #ffffff;
+	margin-bottom: .5rem;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.rect2 {
+	@extend .rect1;
+	min-width: 48%;
+}
+
+.rect3 {
+	@extend .rect1;
+	min-width: 22%;
+}
+
+.rect4 {
+	@extend .rect1;
+	min-width: 13.33%;
+}
+
+.square-word {
+	background-color: white;
+	padding: 10px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	margin: auto;
+}
+
+.introw {
+	h1 {
+		font-size: 74px;
+	}
+}
+
+section {
+	min-height: 50vh;
+	padding: 75px 10px;
+	position: relative;
+}
+
+video {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	transform: translateX(-50%) translateY(-50%);
+	background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+	background-size: cover;
+	transition: 1s opacity;
+	opacity: 0.5;
+}
+
+.emphasis {
+	padding: 6px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	color: white;
+	border-radius: 2px;
+}
+
+#user-card-display {
+	position: relative;
+	min-height: 350px;
+	.user-card {
+		display: inline-block;
+		position: absolute;
+	}
+	.user-card:nth-child(2) {
+		z-index: 3;
+		transform: translateX(-50%);
+		min-width: 250px;
+	}
+	.user-card:nth-child(odd) {
+		transform: scale(0.9);
+		transform-origin: center;
+		filter: blur(1px) grayscale(75%);
+		min-width: 225px;
+		left: 0;
+	}
+	.user-card:nth-child(3) {
+		z-index: 2;
+		right: 0;
+		left: initial;
+	}
+}
+
+.user-card {
+	max-width: 300px;
+	max-height: 350px;
+	img {
+		width: 100%;
+	}
+	.cover-image {
+		width: 100%;
+		height: 100px;
+		overflow: hidden;
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	.avatar-image {
+		height: 125px;
+		overflow: hidden;
+		width: 125px;
+		position: relative;
+		border-radius: 50%;
+		transform: translateY(-50%);
+		left: 0;
+		right: 0;
+		margin: auto auto -80px;
+	}
+	.user-name {
+		font-family: 'Poiret One';
+		font-size: 30px;
+
+	}
+	.card-action {
+		a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+			margin-right: 0px;
+		}
+	}
+}
+
+#project-card-display {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.project-card {
+	@extend .user-card;
+	width: 425px;
+	max-width: 425px;
+	.card-content {
+		.project-desc {
+			font-size: 12px;
+		}
+	}
+	.project-name {
+		font-family: "Poiret One";
+		font-size: 30px;
+	}
+	.cover-image {
+		height: 150px;
+		position: relative;
+		img {
+			width: 45px;
+			height: 45px;
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			border-radius: 50%;
+		}
+	}
+	.card-reveal {
+		.card-title {
+			cursor: default;
+			small {
+				font-size: 12px;
+				line-height: 1;
+				display: block;
+				font-family: 'Roboto';
+			}
+		}
+		.project-details {
+			display: flex;
+			justify-content: space-between;
+			p {
+				line-height: 1;
+			}
+		}
+	}
+}
+
+.right-align {
+	p {
+		margin-right: 0;
+	}
+}
+
+.left-align {
+	p {
+		margin-left: 0;
+	}
+}
+
+footer {
+	padding: 10px;
+}
+
+.side-nav-body {
+	section,
+	footer {
+		padding-left: 300px;
+	}
+	section{
+		padding-top:40px; 
+	}
+	.container{
+		width: 90%;
+	}
+}
+.results{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.user-card,.project-card{
+		flex-basis: 24%;
+	}
+	.user-card{
+	}
+	.pagination{
+		width: 100%;
+		text-align: center;
+	}
+}
