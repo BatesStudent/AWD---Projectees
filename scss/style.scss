@@ -238,6 +238,7 @@ video {
 	@extend .user-card;
 	width: 425px;
 	max-width: 425px;
+    min-width: 400px;
 	.card-content {
 		.project-desc {
 			font-size: 12px;
@@ -312,11 +313,12 @@ footer {
 	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	.user-card,.project-card{
+    .user-card{
 		flex-basis: 24%;
 	}
-	.user-card{
-	}
+    .project-card{
+        flex-basis: 33%;
+    }
 	.pagination{
 		width: 100%;
 		text-align: center;
