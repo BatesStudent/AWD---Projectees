@@ -13,28 +13,57 @@
 
 <body class="grey lighten-4 side-nav-body">
 	<div class="navbar-fixed">
-	<nav class="z-depth-2">
-		<div class="nav-wrapper light-blue accent-4 greyText ">
-			<a href="index.html" class="brand-logo"> <img src="https://www.headsetgo.online/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
-			<form class="search-form">
-				<div class="input-field light-blue darken-3">
-					<input id="search" type="search" placeholder="Search" required>
-					<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-					<i class="material-icons">close</i>
-				</div>
-			</form>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="sass.html"><i class="material-icons">search</i></a></li>
-				<li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-				<li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-				<li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-			</ul>
-		</div>
-	</nav>
+        <nav class="z-depth-1">
+            <div class="nav-wrapper light-blue accent-4 greyText ">
+                <a href="index.html" class="brand-logo"> <img src="https://www.headsetgo.online/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
+                <form class="search-form">
+                    <div class="input-field light-blue darken-3">
+                        <input id="search" type="search" placeholder="Search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="badges.html"><i class="material-icons">notifications</i></a></li>
+                    <li><a href="collapsible.html" ><i class="material-icons">settings</i></a></li>
+                    <li><a href="newProject.html" class="btn-floating waves-effect waves-light amber accent-3"><i class="material-icons">add</i></a></li>
+                </ul>
+            </div>
+        </nav>
 	</div>
 	<ul id="slide-out" class="side-nav fixed">
-		<li><a href="#!">First Sidebar Link</a></li>
-		<li><a href="#!">Second Sidebar Link</a></li>
+        <li><div class="user-view light-blue lighten-3">
+      <div class="background">
+        <img src="images/office.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="img/default.jpg"></a>
+      <a href="#!name"><span class="white-text name">User Name</span></a>
+      <a href="#!email"><span class="white-text email">user@email.co.uk</span></a>
+    </div></li>
+		 <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li>
+                <a class="collapsible-header active">Projects<i class="material-icons right">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                  <ul>
+                    <li class="active"><a href="searchProjects.html">Search Projects</a></li>
+                    <li><a href="#!">My Projects</a></li>
+                    <li><a href="#!">Create New Project<i class="material-icons right">add</i></a></li>
+                  </ul>
+                </div>
+              </li>
+                <li>
+                <a class="collapsible-header">Users<i class="material-icons right">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                  <ul>
+                    <li><a href="searchUsers.html">Search Users</a></li>
+                    <li><a href="#!">My Profile</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+        <li><a href="#!"></a></li>
 	</ul>
 	<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 	<section class="grey lighten-4 full-height">
