@@ -315,3 +315,41 @@ footer {
 		text-align: center;
 	}
 }
+.cover-photo{
+    background-image:url(../img/defaultCover.jpg);
+    background-size: cover;
+    height: 40vh;
+    min-height: 300px;
+}
+.profile-head{
+    
+    .profile-user{
+        position: absolute;
+        margin-top: 40vh;
+        transform: translateY(-50%) translateX(-50%);
+        display: flex;
+        z-index: 10;
+        left: 50%;
+        .profile-pic{
+            text-align: center;
+            img{
+                width: 100%;
+                max-width: 250px;
+                border-radius: 50%;
+                margin: auto;
+            }
+        }
+        .profile-intro{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .profile-name{
+                padding: 20px;
+                margin: 0 auto 10px 0;
+            }
+            .profile-quote{
+                margin-left: 0;
+            }
+        }
+    }
+}
