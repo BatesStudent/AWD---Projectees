@@ -247,6 +247,8 @@ footer {
   display: flex;
   z-index: 10;
   left: 50%; }
+  .profile-head .profile-user .row {
+    width: 100%; }
   .profile-head .profile-user .profile-pic {
     text-align: center; }
     .profile-head .profile-user .profile-pic img {
@@ -260,8 +262,21 @@ footer {
     justify-content: center; }
     .profile-head .profile-user .profile-intro .profile-name {
       padding: 20px;
-      margin: 0 auto 10px 0; }
+      margin: 10px auto 10px 0; }
     .profile-head .profile-user .profile-intro .profile-quote {
       margin-left: 0; }
+
+.profile-page {
+  padding-top: 95px; }
+  .profile-page .profile-info {
+    max-width: 300px;
+    margin: 5px auto; }
+    .profile-page .profile-info h2 {
+      font-size: 30px;
+      margin: 10px 0; }
+  .profile-page .profile-detail p {
+    margin-left: 0; }
+  .profile-page .profile-detail h2:first-child {
+    margin-top: 5px; }
 
 /*# sourceMappingURL=style.css.map */

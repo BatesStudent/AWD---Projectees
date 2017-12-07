@@ -330,6 +330,9 @@ footer {
         display: flex;
         z-index: 10;
         left: 50%;
+		.row{
+			width: 100%;
+		}
         .profile-pic{
             text-align: center;
             img{
@@ -345,11 +348,30 @@ footer {
             justify-content: center;
             .profile-name{
                 padding: 20px;
-                margin: 0 auto 10px 0;
+                margin: 10px auto 10px 0;
             }
             .profile-quote{
                 margin-left: 0;
             }
         }
     }
+}
+.profile-page{
+	padding-top: 95px;
+	.profile-info{
+		max-width: 300px;
+    	margin: 5px auto;
+		h2{
+			font-size: 30px;
+			margin: 10px 0;
+		}
+	}
+	.profile-detail{
+		p{
+			margin-left: 0;
+		}
+		h2:first-child{
+			margin-top: 5px;
+		}
+	}
 }
