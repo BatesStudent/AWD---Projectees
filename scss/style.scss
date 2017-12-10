@@ -1,4 +1,6 @@
 $greyText: #585858;
+$lightBlue: #03a9f4;
+$accentAmber: #ffc400;
 
 body {
 	color: $greyText;
@@ -374,4 +376,26 @@ footer {
 			margin-top: 5px;
 		}
 	}
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active{
+	background-color: $accentAmber;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+	border-bottom: 1px solid $accentAmber;
+    -webkit-box-shadow: 0 1px 0 0 $accentAmber;
+    box-shadow: 0 1px 0 0 $accentAmber;
+}
+.dropdown-content li>a, .dropdown-content li>span{
+	color: $accentAmber;
+}
+[type="checkbox"]:checked+label:before{
+	border-right: 2px solid $accentAmber;
+    border-bottom: 2px solid $accentAmber;
+}
+input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label{
+	color: $accentAmber;
+}
+.input-field .prefix.active{
+	color: $accentAmber;
 }
