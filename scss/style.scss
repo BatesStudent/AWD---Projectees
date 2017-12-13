@@ -40,9 +40,11 @@ nav {
 		-webkit-transform: translateY(0);
 	}
 }
+
 .switch label input[type=checkbox]:checked + .lever:after {
 	background-color: inherit;
 }
+
 .container {
 	h1,
 	h2,
@@ -231,7 +233,7 @@ video {
 	@extend .user-card;
 	width: 425px;
 	max-width: 425px;
-    min-width: 400px;
+	min-width: 400px;
 	.card-content {
 		.project-desc {
 			font-size: 12px;
@@ -294,108 +296,169 @@ footer {
 	footer {
 		padding-left: 300px;
 	}
-	section{
-		padding-top:40px; 
+	section {
+		padding-top: 40px;
 	}
-	.container{
+	.container {
 		width: 90%;
 	}
 }
-.results{
+
+.results {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
-    .user-card{
+	.user-card {
 		flex-basis: 24%;
 	}
-    .project-card{
-        flex-basis: 33%;
-    }
-	.pagination{
+	.project-card {
+		flex-basis: 33%;
+	}
+	.pagination {
 		width: 100%;
 		text-align: center;
 	}
 }
-.cover-photo{
-    background-image:url(../img/defaultCover.jpg);
-    background-size: cover;
-    height: 40vh;
-    min-height: 300px;
+
+.cover-photo {
+	background-image: url(../img/defaultCover.jpg);
+	background-size: cover;
+	height: 40vh;
+	min-height: 300px;
 }
-.profile-head{
-    
-    .profile-user{
-        position: absolute;
-        margin-top: 40vh;
-        transform: translateY(-50%) translateX(-50%);
-        display: flex;
-        z-index: 10;
-        left: 50%;
-		.row{
+
+.profile-head {
+
+	.profile-user {
+		position: absolute;
+		margin-top: 40vh;
+		transform: translateY(-50%) translateX(-50%);
+		display: flex;
+		z-index: 10;
+		left: 50%;
+		.row {
 			width: 100%;
 		}
-        .profile-pic{
-            text-align: center;
-            img{
-                width: 100%;
-                max-width: 250px;
-                border-radius: 50%;
-                margin: auto;
-            }
-        }
-        .profile-intro{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            .profile-name{
-                padding: 20px;
-                margin: 10px auto 10px 0;
-            }
-            .profile-quote{
-                margin-left: 0;
-            }
-        }
-    }
+		.profile-pic {
+			text-align: center;
+			img {
+				width: 100%;
+				max-width: 250px;
+				border-radius: 50%;
+				margin: auto;
+			}
+		}
+		.profile-intro {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			.profile-name {
+				padding: 20px;
+				margin: 10px auto 10px 0;
+			}
+			.profile-quote {
+				margin-left: 0;
+			}
+		}
+	}
 }
-.profile-page{
+
+.profile-page {
 	padding-top: 95px;
-	.profile-info{
+	.profile-info {
 		max-width: 300px;
-    	margin: 5px auto;
-		h2{
+		margin: 5px auto;
+		h2 {
 			font-size: 30px;
 			margin: 10px 0;
 		}
 	}
-	.profile-detail{
-		p{
+	.profile-detail {
+		p {
 			margin-left: 0;
 		}
-		h2:first-child{
+		h2:first-child {
 			margin-top: 5px;
 		}
 	}
 }
-.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active{
+
+.side-nav .collapsible-body > ul:not(.collapsible) > li.active,
+.side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active {
 	background-color: $accentAmber;
 }
 
-input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
 	border-bottom: 1px solid $accentAmber;
-    -webkit-box-shadow: 0 1px 0 0 $accentAmber;
-    box-shadow: 0 1px 0 0 $accentAmber;
+	-webkit-box-shadow: 0 1px 0 0 $accentAmber;
+	box-shadow: 0 1px 0 0 $accentAmber;
 }
-.dropdown-content li>a, .dropdown-content li>span{
+
+.dropdown-content li > a,
+.dropdown-content li > span {
 	color: $accentAmber;
 }
-[type="checkbox"]:checked+label:before{
+
+[type="checkbox"]:checked + label:before {
 	border-right: 2px solid $accentAmber;
-    border-bottom: 2px solid $accentAmber;
+	border-bottom: 2px solid $accentAmber;
 }
-input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label{
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
 	color: $accentAmber;
 }
-.input-field .prefix.active{
+
+.input-field .prefix.active {
 	color: $accentAmber;
+}
+
+.tabs {
+	.tab{
+	a,
+	a.active {
+		color: $accentAmber;
+	}
+	}
+	.indicator {
+		background-color: $accentAmber;
+	}
+}
+@media only screen and (max-width: 1024px){
+	.introw{ h1{ font-size:40px;}}
+	h1{ font-size: 34px;}
+	.project-card{
+		min-width: initial;
+		.project-name{
+			font-size: 24px;
+		}
+		.card-reveal{
+			opacity: 0;
+			z-index: -1 !important;
+		}
+	}
 }
