@@ -1,5 +1,3 @@
-
-	<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand:300,400,500" rel="stylesheet">
 	<nav>
 		<div class="nav-wrapper light-blue">
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
