@@ -28,4 +28,3 @@ require_once "elements/header.php";
 require_once "pages/$getTitle.php";
 require_once "elements/footer.php";
 ?>
-

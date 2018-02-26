@@ -10,7 +10,7 @@
 		</div>
 	</section>
 	<section class="grey lighten-4 circle-top-section full-height center-align">
-		<img src="https://www.headsetgo.online/ProjCircleGW@1.5x.png" style="position:absolute;top:0px;left:50%; transform:translateY(-50%) translateX(-50%); max-width: 100px;">
+		<img src="img/ProjCircleGW@1.5x.png" style="position:absolute;top:0px;left:50%; transform:translateY(-50%) translateX(-50%); max-width: 100px;">
 		<div class="container">
 			<h2>So...who are you?</h2>
 			<p>What's your deal? Are you here to find project team members or to be found by project team leaders? Time to make a choice! (Don't worry, there's no wrong choice and you can always be both!)</p>

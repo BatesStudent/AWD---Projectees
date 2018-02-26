@@ -16,7 +16,7 @@
 	?>
 		<nav>
 			<div class="nav-wrapper light-blue">
-				<a href="index.php" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
+				<a href="index.php" class="brand-logo"> <img src="../img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="index.php?gp=login" class="waves-effect waves-light btn light-blue accent-4">Login</a></li>					
 					<li><a href="index.php?gp=register" class="waves-effect waves-light btn light-blue accent-4">Register</a></li>
