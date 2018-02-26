@@ -311,16 +311,17 @@ footer {
 	flex-wrap: wrap;
 	.user-card {
 		flex-basis: 24%;
+		min-width: 250px;
 	}
 	.project-card {
 		flex-basis: 33%;
+		min-width: 400px;
 	}
 	.pagination {
 		width: 100%;
 		text-align: center;
 	}
 }
-
 .cover-photo {
 	background-image: url(../img/defaultCover.jpg);
 	background-size: cover;
@@ -450,7 +451,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 }
 @media only screen and (max-width: 1024px){
 	.introw{ h1{ font-size:40px;}}
-	h1{ font-size: 34px;}
+	h1{ font-size: 38px;}
+	h2{font-size: 34px;}
 	.project-card{
 		min-width: initial;
 		.project-name{
@@ -461,4 +463,82 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 			z-index: -1 !important;
 		}
 	}
+	nav{
+		.nav-wrapper{
+			padding-left: 0;
+			.search-form{
+				transform: translateY(100%) translateX(-50%);
+			}
+		}
+	}
+	.user-card{
+		.user-name{
+			font-size: 26px;
+		}
+	}
+	.side-nav-body{
+		section, footer{
+			padding-left: 10px;
+		}
+	}
+	.results{
+		.user-card, .project-card{
+			margin: 10px auto;
+			max-width:100%;
+			min-width: 100%;
+		}
+	}
+	.profile-head {
+		margin-top: 50px;
+
+	.profile-user {
+		position: relative;
+		margin-top: 0;
+		transform: translateY(0%);
+		left: 0;
+		.row{
+			width: initial;
+		}
+		.profile-pic {
+			float: none; 
+			margin-right: auto;
+			img {
+				width: 100%;
+				max-width: 250px;
+				border-radius: 50%;
+				margin: auto;
+			}
+		}
+		.profile-intro {
+			.profile-name {
+				padding: 20px;
+				margin: 10px auto 10px auto;
+				font-size: 38px
+			}
+			.profile-quote {
+				margin-left: 0;
+			}
+		}
+	}
+}
+	.profile-page {
+	padding-top: 0px;
+	.profile-info {
+		max-width: 300px;
+		margin: 0 auto 15px;
+		h2 {
+			font-size: 30px;
+		}
+	}
+	.profile-detail {
+		p {
+			margin-left: 0;
+		}
+		h2:first-child {
+			margin-top: 5px;
+		}
+	}
+}
+
+
 }

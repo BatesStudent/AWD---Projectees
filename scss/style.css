@@ -227,9 +227,11 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap; }
   .results .user-card, .results .project-card {
-    flex-basis: 24%; }
+    flex-basis: 24%;
+    min-width: 250px; }
   .results .project-card {
-    flex-basis: 33%; }
+    flex-basis: 33%;
+    min-width: 400px; }
   .results .pagination {
     width: 100%;
     text-align: center; }
@@ -337,6 +339,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
     font-size: 40px; }
 
   h1 {
+    font-size: 38px; }
+
+  h2 {
     font-size: 34px; }
 
   .project-card {
@@ -345,6 +350,58 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
       font-size: 24px; }
     .project-card .card-reveal {
       opacity: 0;
-      z-index: -1 !important; } }
+      z-index: -1 !important; }
+
+  nav .nav-wrapper {
+    padding-left: 0; }
+    nav .nav-wrapper .search-form {
+      transform: translateY(100%) translateX(-50%); }
+
+  .user-card .user-name, .project-card .user-name {
+    font-size: 26px; }
+
+  .side-nav-body section, .side-nav-body footer {
+    padding-left: 10px; }
+
+  .results .user-card, .results .project-card, .results .project-card {
+    margin: 10px auto;
+    max-width: 100%;
+    min-width: 100%; }
+
+  .profile-head {
+    margin-top: 50px; }
+    .profile-head .profile-user {
+      position: relative;
+      margin-top: 0;
+      transform: translateY(0%);
+      left: 0; }
+      .profile-head .profile-user .row {
+        width: initial; }
+      .profile-head .profile-user .profile-pic {
+        float: none;
+        margin-right: auto; }
+        .profile-head .profile-user .profile-pic img {
+          width: 100%;
+          max-width: 250px;
+          border-radius: 50%;
+          margin: auto; }
+      .profile-head .profile-user .profile-intro .profile-name {
+        padding: 20px;
+        margin: 10px auto 10px auto;
+        font-size: 38px; }
+      .profile-head .profile-user .profile-intro .profile-quote {
+        margin-left: 0; }
+
+  .profile-page {
+    padding-top: 0px; }
+    .profile-page .profile-info {
+      max-width: 300px;
+      margin: 0 auto 15px; }
+      .profile-page .profile-info h2 {
+        font-size: 30px; }
+    .profile-page .profile-detail p {
+      margin-left: 0; }
+    .profile-page .profile-detail h2:first-child {
+      margin-top: 5px; } }
 
 /*# sourceMappingURL=style.css.map */

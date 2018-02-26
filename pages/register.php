@@ -1,36 +1,14 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Projectees | Register</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css'>
-	<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-	<link rel="stylesheet" href="scss/style.css">
-
-</head>
-
-<body class="grey lighten-4">
-	<link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand:300,400,500" rel="stylesheet">
-	<nav>
-		<div class="nav-wrapper light-blue">
-			<a href="index.html" class="brand-logo"> <img src="https://www.headsetgo.online/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="login.html" class="waves-effect waves-light btn light-blue accent-4">Login</a></li>
-			</ul>
-		</div>
-	</nav>
-	<section class="circle-bottom-section full-height light-blue center-align">
+	<section class="circle-bottom-section full-height center-align">
 		<div class="container">
 			<div>
-				<div class="row introw white-text">
-					<h1>Join <img src="https://www.headsetgo.online/ProjLogoW@0.5x.png" height="90px" style="vertical-align:top;" alt="Projectees"></h1>
-
+				<div class="row introw">
+					<h1>Join Projectees...</h1>
+					<p>Already have an account? Well, what are you doing here then!? <a href="index.php?gp=login" class="light-blue-text">Log in here.</a></p>
 				</div>
 				<div class="row center-align">
 					<form class="col l6 s12 grey lighten-4 card offset-l3">
-						<div class="col s12">
+						<div class="col s12 hide-on-med-and-down">
 							<ul class="tabs tabs-fixed-width">
 								<li class="tab "><a class="active" href="#tab1">Login Details</a></li>
 								<li class="tab "><a href="#tab2">Profile Creation</a></li>
@@ -139,41 +117,15 @@
 		</div>
 	</section>
 
-	<footer class="light-blue darken-4 white-text">
-		<div class="container">
-			<div class="row">
-				<div class="col m4 l4 s12 left-align">
-					<h3>Get in touch</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-				</div>
-				<div class="col m4 l4 s12 left-align">
-					<h3>More info</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-				</div>
-				<div class="col m4 l4 s12 right-align">
-					<h3>Get in touch</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col m6 l6 s12 left-align">
-					<small>&copy; Copyright Projectees.</small>
-				</div>
-				<div class="col m6 l6 s12 right-align">
-					<small>App version: v0.0.1</small>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js'></script>
-	<script src='js/main.js'></script>
 	<script>
 		$(document).ready(function() {
 			$('ul.tabs').tabs();
 			$('ul.tabs').tabs('select_tab', 'tab1');
 			$('#toTab2').on('click', function() {
 				$('ul.tabs').tabs('select_tab', 'tab2');
+			});
+			$('#toTab3').on('click', function() {
+				$('ul.tabs').tabs('select_tab', 'tab3');
 			});
 			$('.datepicker').pickadate({
 				selectMonths: true, // Creates a dropdown to control month
