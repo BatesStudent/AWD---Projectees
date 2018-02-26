@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 // http://php.net/manual/en/language.oop5.autoload.php
 spl_autoload_register(function ($class_name) {
@@ -29,3 +30,12 @@ require_once "elements/footer.php";
 ?>
 
 		
+=======
+<?php
+require_once 'includes/header.php';
+
+require_once 'pages/home.php';
+
+require_once 'includes/footer.php';
+?>
+>>>>>>> origin/master
