@@ -128,8 +128,8 @@
 			return $this->email;
 		}
 		
-		public function register($email, $password, $fName, $sName){
-			if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password) || empty($fName) || strlen($password) < 4){
+		public function register($email, $password, $passwordConfirm, $fName, $sName){
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password) || empty($fName) || strlen($password) < 4 || $password != $passwordConfirm){
 				return false;
 			}
 			$password = password_hash($password, PASSWORD_DEFAULT);
@@ -169,43 +169,7 @@
 			}
 
 		}
-		
-		public function getPreferences(){
-			return $this->prefs;
-		}
-		
-		public function updatePreferences($password, $field, $value){
-			if($this->verifyPassword($password)){
-				if($field == "publicContact"){
-					$stmt = $this->db->prepare("UPDATE UserPreferences SET publicContact = ? WHERE userid = $this->uid;");
-					$stmt->bindParam(1, $value);
-					try{
-						$stmt->execute();
-						return true;
-					}
-					catch(Exception $e){
-						return $e;
-					}
-				}
-				else if($field == "defaultScheme"){
-					$stmt = $this->db->prepare("UPDATE UserPreferences SET defaultScheme = ? WHERE userid = $this->uid;");
-					$stmt->bindParam(1, $value);
-					try{
-						$stmt->execute();
-						return true;
-					}
-					catch(Exception $e){
-						return $e;
-					}
-				}
 				
-				
-			}
-			else{
-				return false;
-			}
-		}
-		
 	 	// function for checking password of user
 		private function verifyPassword($password){
 			$stmt = $this->db->query("SELECT password FROM Users WHERE id = $this->uid;");			

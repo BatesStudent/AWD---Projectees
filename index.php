@@ -1,4 +1,3 @@
-
 <?php 
 // http://php.net/manual/en/language.oop5.autoload.php
 spl_autoload_register(function ($class_name) {

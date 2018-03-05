@@ -129,7 +129,7 @@
 				</div>
 				<div id="project-card-display" class="col m6 l6 s12">
 					<div class="card  hoverable sticky-action project-card left-align">
-						<div class="cover-image grey lighten-3" style="background-image: url(https://www.headsetgo.online/ProjLogoG@0.5x.png)">
+						<div class="cover-image grey lighten-3" style="background-image: url(img/ProjLogoG@0.5x.png)">
 							<span class="project-capacity new badge amber" data-badge-caption="spaces">2</span>
 							<img class="z-depth-2" src="img/default.jpg">
 						</div>

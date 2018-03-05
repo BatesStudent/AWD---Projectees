@@ -18,6 +18,7 @@
 						<div id="tab1" class="col s12">
 							<div class="row">
 								<div class="input-field col m6 s12">
+                                     <i class="material-icons prefix">person</i>
 									<input id="fName" type="text" class="validate">
 									<label for="fName">First Name</label>
 								</div>
@@ -28,23 +29,30 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
+                                    <i class="material-icons prefix">face</i>
 									<input id="uName" type="text" class="validate">
 									<label for="uName">Username</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
+							         <i class="material-icons prefix">email</i>
 									<input id="email" type="email" class="validate">
 									<label for="email">Email</label>
 								</div>
 							</div>
 							<div class="row">
-								<div class="input-field col s12">
+								<div class="input-field col l6 m6 s12">
+                                    <i class="material-icons prefix">lock</i>
 									<input id="password" type="password" class="validate">
 									<label for="password">Password</label>
 								</div>
+								<div class="input-field col l6 m6 s12">
+                                    <i class="material-icons prefix">enhanced_encryption</i>
+									<input id="passwordConfirmation" type="password" class="validate">
+									<label for="passwordConfirmation">Password Confirmation</label>
+								</div>
 							</div>
-							
 							<div class="row">
 								<div class="col s12">
 									<a id="toTab2" class="btn waves-effect waves-light amber accent-3">1/3<i class="material-icons right">send</i></a>
@@ -82,13 +90,13 @@
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<textarea id="quote" class="materialize-textarea" data-length="140"></textarea>
+									<textarea id="quote" class="materialize-textarea" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!"></textarea>
 									<label for="quote">Introductory quote</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<textarea id="pd" class="materialize-textarea"></textarea>
+									<textarea id="pd" class="materialize-textarea" placeholder="You can go into as much or as little detail as you want here! Who are you, what makes you interesting, what are you looking for in a project?"></textarea>
 									<label for="pd">Personal Description</label>
 								</div>
 							</div>
