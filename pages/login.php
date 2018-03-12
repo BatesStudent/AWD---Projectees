@@ -1,3 +1,22 @@
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && !empty(trim($_POST['password']))){
+        // register the user
+        $user = new User();
+        if($user->login($_POST['email'], trim($_POST['password'])) == true){
+            $_SESSION['userid'] = $user->uid;
+            echo "<script>window.location.assign('index.php?p=searchProjects');</script>";
+            exit;
+        }
+        else{
+            echo "<script>Materialize.toast('Eek, login details did not match!',4000);</script>";
+        }
+    }
+    else{
+        echo "<script>Materialize.toast('Please fill in all required fields correctly!',4000);</script>";
+    }
+}
+?>
 <section class="circle-bottom-section full-height center-align">
 	<div class="container">
 		<div>
@@ -6,18 +25,18 @@
 				<p>Not got an account yet? What are you waiting for! <a href="index.php?gp=register" class="light-blue-text">Register here.</a></p>
 			</div>
 			<div class="row center-align">
-				<form class="col l6 s12 grey lighten-4 card offset-l3">
+				<form class="col l6 s12 grey lighten-4 card offset-l3" action="index.php?gp=login" method="post">
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">email</i>
-							<input id="email" type="email" class="validate">
+							<input id="email" type="email" class="validate" name="email">
 							<label for="email">Email</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">lock</i>
-							<input id="password" type="password" class="validate">
+							<input id="password" type="password" class="validate" name="password">
 							<label for="password">Password</label>
 						</div>
 					</div>

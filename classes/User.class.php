@@ -4,7 +4,7 @@
 
 
 */
-	class Users{
+	class User{
 
 		public $name;
 		public $uid;
@@ -99,7 +99,6 @@
 						if(password_verify($password, $row->password)){
 							$this->uid = $row->id;
 							$this->name = $row->fName;
-							$this->db->query("UPDATE Users SET lastLogin = CURRENT_TIMESTAMP WHERE id = $row->id;");
 							return true;
 						}
 						else{
@@ -108,7 +107,7 @@
 					}
 				}
 				catch(Exception $e){
-					return $e;
+					return false;
 				}
 				return false;
 			}
@@ -128,34 +127,37 @@
                 return $e;
             }
 		}
-		public function getID(){
-			return $this->uid;
+		public function profileCompletion(){
+            $stmt = $this->db->query("SELECT linkedin, profilePic, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
+            $rows = $stmt->fetch(PDO::FETCH_OBJ);
+            $completion = 0;
+            foreach($rows as $key=>$value){
+                if($value != NULL){
+                    $completion = $completion + 10;
+                }
+            }
+            
+			return $completion;
 		}
 		public function getEmail(){
 			return $this->email;
 		}
 		
-		public function register($email, $password, $passwordConfirm, $fName, $sName){
-			if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password) || empty($fName) || strlen($password) < 4 || $password != $passwordConfirm){
-				return false;
-			}
+		public function register($email, $password, $fName, $sName = null, $uName){
 			$password = password_hash($password, PASSWORD_DEFAULT);
-			$stmt = $this->db->prepare("INSERT INTO Users (fName, sName, email, password) VALUES (?,?,?,?)");
+			$stmt = $this->db->prepare("INSERT INTO Users (fName, sName, email, password, username) VALUES (?,?,?,?,?)");
 				
 			$stmt->bindParam(1, $fName);
 			$stmt->bindParam(2, $sName);
 			$stmt->bindParam(3, $email);
 			$stmt->bindParam(4, $password);
-			try{
-				$this->db->beginTransaction();
-				$stmt->execute();
-				$userid = $this->db->lastInsertId();
-				$this->db->query("INSERT INTO UserPreferences (userid) VALUES ($userid)");
-				$this->db->commit();
+            $stmt->bindParam(5, $uName);
+			try{				
+				$stmt->execute();				
 				return true;
 			}
 			catch(Exception $e){
-				$this->db->rollBack();
+				
 				return $e;
 			}
 		}
