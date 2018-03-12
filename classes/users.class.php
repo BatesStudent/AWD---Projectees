@@ -118,8 +118,15 @@
 			$this->uid = null;
 			$this->email = null;
 		}
-		public function getName(){
-			return $this->name;
+		public function getProfile(){
+            $stmt = $this->db->prepare("SELECT fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
+            try{
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_OBJ);
+            }
+            catch(Exception $e){
+                return $e;
+            }
 		}
 		public function getID(){
 			return $this->uid;
