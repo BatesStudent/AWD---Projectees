@@ -193,6 +193,28 @@
                 return false;
             }
         }
+        public function setProfileImage($new){
+            $stmt = $this->db->prepare("UPDATE Users SET profilePic = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setCoverPhoto($new){
+            $stmt = $this->db->prepare("UPDATE Users SET coverPhoto = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
 		public function profileCompletion(){
             $stmt = $this->db->query("SELECT linkedin, profilePic, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
             $rows = $stmt->fetch(PDO::FETCH_OBJ);
