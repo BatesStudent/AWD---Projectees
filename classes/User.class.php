@@ -127,6 +127,72 @@
                 return $e;
             }
 		}
+        public function setLinkedIn($new){
+            $stmt = $this->db->prepare("UPDATE Users SET linkedin = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setDOB($new){
+            $stmt = $this->db->prepare("UPDATE Users SET dateOfBirth = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setLocation($new){
+            $stmt = $this->db->prepare("UPDATE Users SET location = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setOccupation($new){
+            $stmt = $this->db->prepare("UPDATE Users SET occupation = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setDescription($new){
+            $stmt = $this->db->prepare("UPDATE Users SET description = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        public function setIntro($new){
+            $stmt = $this->db->prepare("UPDATE Users SET intro = ? WHERE id = $this->uid");
+            $stmt->bindParam(1, $new);
+            try{
+                $stmt->execute();
+                return true;
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
 		public function profileCompletion(){
             $stmt = $this->db->query("SELECT linkedin, profilePic, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
             $rows = $stmt->fetch(PDO::FETCH_OBJ);
@@ -138,9 +204,6 @@
             }
             
 			return $completion;
-		}
-		public function getEmail(){
-			return $this->email;
 		}
 		
 		public function register($email, $password, $fName, $sName = null, $uName){

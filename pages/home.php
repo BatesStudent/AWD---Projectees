@@ -22,7 +22,7 @@
 							<p class="">I want to help people with awesome projects or could do with some help from others with a brilliant idea I have, so...</p>
 						</div>
 						<div class="card-action">
-							<a class="waves-effect waves-light btn-large light-blue" href="index.php?gp=register">Sign me up</a>
+							<a class="waves-effect waves-light btn-large light-blue" href="index.php?p=register">Sign me up</a>
 						</div>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 							<p class="">I want to find people to help with my awesome project ideas, therefore I am a...</p>
 						</div>
 						<div class="card-action">
-							<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?gp=register">Project-er</a>
+							<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?p=register">Project-er</a>
 						</div>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 							</p>
 						</div>
 						<div class="card-action">
-							<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?gp=register">Project-ee </a>
+							<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?p=register">Project-ee </a>
 						</div>
 					</div>
 				</div>
@@ -216,7 +216,7 @@
 				<div class="col m6 l6 s12 right-align">
 					<h3>The rest is up to you...</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-					<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?gp=register">Get Started</a>
+					<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?p=register">Get Started</a>
 				</div>
 			</div>
 		</div>

@@ -26,12 +26,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<div>
 				<div class="row introw">
 					<h1>Join Projectees...</h1>
-					<p>Already have an account? Well, what are you doing here then!? <a href="index.php?gp=login" class="light-blue-text">Log in here.</a></p>
+					<p>Already have an account? Well, what are you doing here then!? <a href="index.php?p=login" class="light-blue-text">Log in here.</a></p>
 				</div>
 				<div class="row center-align">
                     <div class="col l2 m1 hide-on-small">
                     </div>
-					<form class="col l8 m10 s12 grey lighten-4 card" action="index.php?gp=register" method="post">
+					<form class="col l8 m10 s12 grey lighten-4 card" action="index.php?p=register" method="post">
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col m6 s12">

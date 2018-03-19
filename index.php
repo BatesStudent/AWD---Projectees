@@ -6,13 +6,8 @@ spl_autoload_register(function ($class_name) {
 session_start();
 
 // if an application page has been specified and the user is loggedin...
-if(isset($_GET["p"]) && isset($_SESSION['userid'])){
-	$user = new User($_SESSION['userid']);
+if(isset($_GET["p"])){
 	$getTitle = $_GET["p"];
-}
-// if a general page has been specified it doesn't matter if the user is logged in (this covers pages like about, contact, log in, home etc.)
-else if(isset($_GET["gp"])){
-	$getTitle = $_GET["gp"];
 }
 // if a page is NOT specified but the user is logged in, go to the dashboard rather than the default home page
 else if(isset($_SESSION['userid'])){
