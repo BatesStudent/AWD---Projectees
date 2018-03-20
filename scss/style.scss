@@ -433,6 +433,15 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 		background-color: $accentAmber;
 	}
 }
+.user-view{
+	.background{
+		img{
+			height: 100%;
+			min-width: 100%;
+			min-height: 100%;
+		}
+	}
+}
 @media only screen and (max-width: 1024px){
 	.introw{ h1{ font-size:40px;}}
 	h1{ font-size: 38px;}

@@ -1,4 +1,7 @@
 <?php
+if(isset($_GET['activated'])){
+	echo "<script>Materialize.toast('Account successfully activated, you may now log in!',5000);</script>";
+}
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && !empty(trim($_POST['password']))){
         // register the user

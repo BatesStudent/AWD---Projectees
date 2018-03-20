@@ -7,18 +7,21 @@
 	class User{
 
 		public $name;
+		public $uName;
+		public $profilePic;
+		public $coverPhoto;
 		public $uid;
 		public $email;
-		public $db;
+		protected $db;
 		
-		public function __construct($id = false, $login = false){
+		public function __construct($id = false){
 			$this->db = new DB();
 			$this->db = $this->db->getPDO();
 			
 			// if the ID is not false, we want to create a User using the provided ID.
 			// In doing so, we only get publicly available information (i.e. this does not log the user in).
-			if($id != false && $login == false){
-				$stmt = $this->db->prepare("SELECT email, fName FROM Users WHERE id = ? LIMIT 1;");
+			if($id != false){
+				$stmt = $this->db->prepare("SELECT email, fName, username, profilePic, coverPhoto FROM Users WHERE id = ? LIMIT 1;");
 				// bind params
 				$stmt->bindParam(1, $id);
 				try{
@@ -28,6 +31,9 @@
 						$this->uid = $id;
 						$this->name = $row->fName;
 						$this->email = $row->email;
+						$this->uName = $row->username;
+						$this->profilePic = $row->profilePic;
+						$this->coverPhoto = $row->coverPhoto;
 					}
 				}
 				catch(Exception $e){
@@ -88,7 +94,7 @@
 			}
 			else{
 				// prepare select statement
-				$stmt = $this->db->prepare("SELECT id, password, fName FROM Users WHERE email = ? LIMIT 1;");
+				$stmt = $this->db->prepare("SELECT id, password, fName, activated FROM Users WHERE email = ? LIMIT 1;");
 				// bind params
 				$stmt->bindParam(1, $email);
 				try{
@@ -96,7 +102,10 @@
 					$stmt->execute();
 					// if there is a row with a matching email AND the passwords match, log the user in
 					while ($row = $stmt->fetch(PDO::FETCH_OBJ)){ 
-						if(password_verify($password, $row->password)){
+						if($row->activated != 1){
+							return false;
+						}
+						else if(password_verify($password, $row->password)){
 							$this->uid = $row->id;
 							$this->name = $row->fName;
 							return true;
@@ -229,21 +238,41 @@
 		}
 		
 		public function register($email, $password, $fName, $sName = null, $uName){
+			$activationCode = md5($uName);
+			
 			$password = password_hash($password, PASSWORD_DEFAULT);
-			$stmt = $this->db->prepare("INSERT INTO Users (fName, sName, email, password, username) VALUES (?,?,?,?,?)");
+			$stmt = $this->db->prepare("INSERT INTO Users (fName, sName, email, password, username, activationCode) VALUES (?,?,?,?,?,?)");
 				
 			$stmt->bindParam(1, $fName);
 			$stmt->bindParam(2, $sName);
 			$stmt->bindParam(3, $email);
 			$stmt->bindParam(4, $password);
             $stmt->bindParam(5, $uName);
+			$stmt->bindParam(6, $activationCode);
 			try{				
-				$stmt->execute();				
+				$stmt->execute();
+				mail($email, "Welcome to Projectees!","Hi, $uName!<br><br>Thank you for registering an account with Projectees, we hope you enjoy using the platform and mostly importantly <strong>get stuff done</strong>!<br><br>Please click the link to verify your account, allowing you to log in:<br><a href='http://".$_SERVER['HTTP_HOST']."/projectees/index.php?p=activateAccount&c=$activationCode' target='_blank'>Verify</a><br><br>Thanks, we look forward to seeing what you create - Projectees","From: noreply@projectees.com\r\nMIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8");
 				return true;
 			}
-			catch(Exception $e){
-				
+			catch(Exception $e){				
 				return $e;
+			}
+		}
+		
+		public function activateAccount($code){
+			$stmt = $this->db->prepare("UPDATE Users SET activated = 1 WHERE activationCode = ?");
+			$stmt->bindParam(1, $code);
+			try{
+				$stmt->execute();
+				if($stmt->rowCount() > 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			catch(Exception $e){
+				return false;
 			}
 		}
 		

@@ -105,7 +105,7 @@
 
 				// Did we hit an error?
 				if ($error) {
-				    echo $error;
+				    ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
 				} else {
 					//Save file
 				    if (move_uploaded_file($_FILES['coverPicture']["tmp_name"], $target_file)) {
