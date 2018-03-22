@@ -322,7 +322,22 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .user-view .background img {
   height: 100%;
   min-width: 100%;
-  min-height: 100%; }
+  min-height: 100%;
+  opacity: 0.4; }
+
+.dropdown-content {
+  width: 100% !important;
+  right: 0;
+  max-width: 500px !important;
+  top: 60px !important;
+  max-height: 50vh !important;
+  left: auto !important; }
+  .dropdown-content li {
+    padding: 15px;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(21, 21, 21, 0.1); }
+    .dropdown-content li.read {
+      opacity: 0.9; }
 
 @media only screen and (max-width: 1024px) {
   .introw h1 {

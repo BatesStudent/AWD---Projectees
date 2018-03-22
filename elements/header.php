@@ -35,7 +35,30 @@
 	?>
 
 		<body class="grey lighten-4 side-nav-body">
+			
 			<div class="navbar-fixed">
+				<ul id="notificationlist" class="dropdown-content">
+				<?php $all = new Notification(false, $_SESSION['userid']); 
+					foreach($all->all as $row){
+						?>
+					<li <?php if($row['readState'] == 1){ echo 'class="read"';} ?> data-nid="<?= $row['id'] ?>">
+						<?php
+							if($row['link'] != NULL){
+								?>
+						<a href="<?= $row['link'] ?>"><?= $row['text'] ?></a>
+								<?php
+							}
+							else {
+							?>
+							<?= $row['text'] ?>
+						<?php
+							}
+						?>
+					</li>
+						<?php
+					}
+				?>
+			</ul>
 				<nav class="z-depth-1">
 					<div class="nav-wrapper light-blue accent-4 greyText ">
 						<a href="index.php?p=searchProjects" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
@@ -47,7 +70,7 @@
 							</div>
 						</form>
 						<ul id="nav-mobile" class="right hide-on-med-and-down">
-							<li><a href=""><i class="material-icons">notifications</i></a></li>
+							<li><a class="dropdown-button" href="#!" data-activates="notificationlist"><i class="material-icons">notifications</i></a></li>
 							<li><a href="index.php?p=userSettings"><i class="material-icons">settings</i></a></li>
 							<li><a href="index.php?p=newProject" class="btn-floating waves-effect waves-light amber accent-3"><i class="material-icons">add</i></a></li>
 						</ul>
@@ -57,10 +80,20 @@
 			<ul id="slide-out" class="side-nav fixed">
 				<li>
 					<div class="user-view">
-						<div class="background">
+						<div class="background blue-grey darken-4">
+							<?php if(isset($user->coverPhoto)){ ?>
 							<img src="user_images/<?=$user->uid?>_img/<?=$user->coverPhoto?>" alt="User cover image">
+							<?php } else { ?>
+							<img src="img/smallbg.jpg" alt="User Profile picture">
+							<?php } ?>
 						</div>
-						<a href="userProfile.html"><img class="circle" src="user_images/<?=$user->uid?>_img/<?=$user->profilePic?>" alt="User Profile picture"></a>
+						<a href="userProfile.html">
+							<?php if(isset($user->profilePic)){ ?>
+							<img class="circle" src="user_images/<?=$user->uid?>_img/<?=$user->profilePic?>" alt="User Profile picture">
+							<?php } else { ?>
+							<img class="circle" src="img/default.jpg" alt="User Profile picture">
+							<?php } ?>
+						</a>
 						<a href="userProfile.html"><span class="white-text name"><?= $user->name; ?></span></a>
 						<a href="userProfile.html"><span class="white-text">@<?= $user->uName; ?></span></a>
 						<a href="#!email"><span class="white-text email"><?=$user->email?></span></a>

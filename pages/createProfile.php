@@ -1,7 +1,10 @@
 <?php
-    if(!isset($user)){
-        $user = new User($_SESSION['userid']);
-    }
+if(!isset($_SESSION['userid'])){
+	echo "<script>window.location.assign('index.php?p=login');</script>";
+	exit;
+}
+
+    $user = new User($_SESSION['userid']);
     $profileDetails = $user->getProfile();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){        
@@ -23,10 +26,9 @@
         if(isset($_POST['role']) && !empty($_POST['role'])){
             $user->setOccupation($_POST['role']);
         }
-          			//Upload Image Here
+			//Upload Image Here
 			if($_FILES['profilePicture']['tmp_name']){
 				//Let's add a random string of numbers to the start of the filename to make it unique!
-
 				$newFilename = md5(uniqid(rand(), true)).$_FILES['profilePicture']["name"];
                 $newDirName = './user_images/'.$user->uid . "_img/";
                 if(!file_exists($newDirName)){
@@ -52,8 +54,7 @@
 				}
 
 				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-				&& $imageFileType != "gif" ) {
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
 				    $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
 				}
 
@@ -98,8 +99,7 @@
 				}
 
 				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-				&& $imageFileType != "gif" ) {
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
 				    $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
 				}
 

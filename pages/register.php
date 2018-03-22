@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 require_once "pages/login.php";
             }
             else{
-                echo "<script>Materialize.toast('Eek, we were unable to create your account!',4000);</script>";
+                echo "<script>Materialize.toast('Eek, we were unable to create your account! Maybe you already have an account with that email address?',4000);</script>";
             }
         }
         else{

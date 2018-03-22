@@ -120,11 +120,6 @@
 				}
 				return false;
 			}
-		}		
-		public function logOut(){
-			$this->name = null;
-			$this->uid = null;
-			$this->email = null;
 		}
 		public function getProfile(){
             $stmt = $this->db->prepare("SELECT fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
@@ -251,11 +246,18 @@
 			$stmt->bindParam(6, $activationCode);
 			try{				
 				$stmt->execute();
-				mail($email, "Welcome to Projectees!","Hi, $uName!<br><br>Thank you for registering an account with Projectees, we hope you enjoy using the platform and mostly importantly <strong>get stuff done</strong>!<br><br>Please click the link to verify your account, allowing you to log in:<br><a href='http://".$_SERVER['HTTP_HOST']."/projectees/index.php?p=activateAccount&c=$activationCode' target='_blank'>Verify</a><br><br>Thanks, we look forward to seeing what you create - Projectees","From: noreply@projectees.com\r\nMIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8");
-				return true;
+				// check account was created and send activation email
+				// a common reason for the account not creating is duplicate email addresses (only 1 account per email is allowed)
+				if($stmt->rowCount() > 0){
+					mail($email, "Welcome to Projectees!","Hi, $uName!<br><br>Thank you for registering an account with Projectees, we hope you enjoy using the platform and mostly importantly <strong>get stuff done</strong>!<br><br>Please click the link to verify your account, allowing you to log in:<br><a href='http://".$_SERVER['HTTP_HOST']."/projectees/index.php?p=activateAccount&c=$activationCode' target='_blank'>Verify</a><br><br>Thanks, we look forward to seeing what you create - Projectees","From: noreply@projectees.com\r\nMIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8");
+					new Notification(false, $this->db->lastInsertId(),"Thank you for joining the Projectees Community!");					
+					return true;
+				} else {
+					return false;
+				}
 			}
 			catch(Exception $e){				
-				return $e;
+				return false;
 			}
 		}
 		
