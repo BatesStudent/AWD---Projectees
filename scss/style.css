@@ -311,6 +311,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .tabs .indicator {
   background-color: #ffc400; }
 
+.user-view img.circle {
+  object-fit: cover; }
 .user-view .background img {
   height: 100%;
   min-width: 100%;

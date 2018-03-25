@@ -19,7 +19,8 @@
         closeOnSelect: true // Close upon selecting a date, 
      });
      
-	 
+	 // show the right sidenav tab as active
+	 $('li[data-active-title="'+document.title.split(" | ")[1] +'"]').addClass("active");
 	 
 	 $('#notificationDrop').on('click',function(){
 		$('#notificationBadge').css('display','none');
@@ -31,7 +32,6 @@
 			method : "post",
 			 data : {nid : n.data('nid')}
 		}).done(function(data){
-			 console.log(data);
 			n.addClass('read');
 		});
 	 });

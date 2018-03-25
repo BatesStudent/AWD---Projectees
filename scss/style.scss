@@ -420,6 +420,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 	}
 }
 .user-view{
+	img.circle{
+		object-fit: cover;
+	}
 	.background{
 		img{
 			height: 100%;

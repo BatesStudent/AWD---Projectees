@@ -92,27 +92,27 @@
 							<img src="img/smallbg.jpg" alt="User cover picture">
 							<?php } ?>
 						</div>
-						<a href="userProfile.html">
+						<a href="index.php?p=userProfile&username=<?= $user->uName?>">
 							<?php if(isset($user->profilePic)){ ?>
 							<img class="circle" src="user_images/<?=$user->uid?>_img/<?=$user->profilePic?>" alt="User Profile picture">
 							<?php } else { ?>
 							<img class="circle" src="img/default.jpg" alt="User Profile picture">
 							<?php } ?>
 						</a>
-						<a href="userProfile.html"><span class="white-text name"><?= $user->name; ?></span></a>
-						<a href="userProfile.html"><span class="white-text">@<?= $user->uName; ?></span></a>
+						<a href="index.php?p=userProfile&username=<?= $user->uName?>"><span class="white-text name"><?= $user->name; ?></span></a>
+						<a href="index.php?p=userProfile&username=<?= $user->uName?>"><span class="white-text">@<?= $user->uName; ?></span></a>
 						<a href="#!email"><span class="white-text email"><?=$user->email?></span></a>
 					</div>
 				</li>
 				<li class="no-padding">
 					<ul class="collapsible collapsible-accordion">
 						<li>
-							<a class="collapsible-header active">Projects<i class="material-icons right">arrow_drop_down</i></a>
+							<a class="collapsible-header ">Projects<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li class="active"><a href="index.php?p=search">Search Projects</a></li>
-									<li><a href="#!">My Projects</a></li>
-									<li><a href="#!">Create New Project<i class="material-icons right">add</i></a></li>
+									<li data-active-title="searchProjects"><a href="index.php?p=search">Search Projects</a></li>
+									<li data-active-title="userProjects"><a href="#!">My Projects</a></li>
+									<li data-active-title="newProject"><a href="#!">Create New Project<i class="material-icons right">add</i></a></li>
 								</ul>
 							</div>
 						</li>
@@ -120,8 +120,8 @@
 							<a class="collapsible-header">Users<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li><a href="#">Search Users</a></li>
-									<li><a href="#">My Profile</a></li>
+									<li data-active-title="searchUsers"><a href="#">Search Users</a></li>
+									<li data-active-title="userProfile"><a href="index.php?p=userProfile&username=<?= $user->uName?>">My Profile</a></li>
 									<li><a href="index.php?p=logout">Logout</a></li>
 								</ul>
 							</div>
