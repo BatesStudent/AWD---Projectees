@@ -1,9 +1,5 @@
 <?php
 
-/* TODO
-
-
-*/
 	class User{
 
 		public $name;
@@ -121,15 +117,29 @@
 				return false;
 			}
 		}
-		public function getProfile(){
-            $stmt = $this->db->prepare("SELECT fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
-            try{
-                $stmt->execute();
-                return $stmt->fetch(PDO::FETCH_OBJ);
-            }
-            catch(Exception $e){
-                return $e;
-            }
+		public function getProfile($username = false){
+			
+			if($username == false){
+				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
+				try{
+					$stmt->execute();
+					return $stmt->fetch(PDO::FETCH_OBJ);
+				}
+				catch(Exception $e){
+					return $e;
+				}
+			}
+			else{
+				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE username = ?");
+				$stmt->bindParam(1, $username);
+				try{
+					$stmt->execute();
+					return $stmt->fetch(PDO::FETCH_OBJ);
+				}
+				catch(Exception $e){
+					return $e;
+				}
+			}
 		}
         public function setLinkedIn($new){
             $stmt = $this->db->prepare("UPDATE Users SET linkedin = ? WHERE id = $this->uid");
@@ -233,8 +243,10 @@
 		}
 		
 		public function register($email, $password, $fName, $sName = null, $uName){
+			// generate random activation code
 			$activationCode = md5($uName);
 			
+			// hash password
 			$password = password_hash($password, PASSWORD_DEFAULT);
 			$stmt = $this->db->prepare("INSERT INTO Users (fName, sName, email, password, username, activationCode) VALUES (?,?,?,?,?,?)");
 				
@@ -249,7 +261,9 @@
 				// check account was created and send activation email
 				// a common reason for the account not creating is duplicate email addresses (only 1 account per email is allowed)
 				if($stmt->rowCount() > 0){
+					
 					mail($email, "Welcome to Projectees!","Hi, $uName!<br><br>Thank you for registering an account with Projectees, we hope you enjoy using the platform and mostly importantly <strong>get stuff done</strong>!<br><br>Please click the link to verify your account, allowing you to log in:<br><a href='http://".$_SERVER['HTTP_HOST']."/projectees/index.php?p=activateAccount&c=$activationCode' target='_blank'>Verify</a><br><br>Thanks, we look forward to seeing what you create - Projectees","From: noreply@projectees.com\r\nMIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8");
+					// create welcome notification 
 					new Notification(false, $this->db->lastInsertId(),"Thank you for joining the Projectees Community!");					
 					return true;
 				} else {
@@ -267,6 +281,7 @@
 			try{
 				$stmt->execute();
 				if($stmt->rowCount() > 0){
+					// check an account was actually updated
 					return true;
 				}
 				else{
@@ -305,6 +320,25 @@
 				else{
 					return false;
 				}
+			}
+		}
+		
+		// function to check if a username already exists
+		public function checkUsername($username){
+			$username = trim($username);
+			$stmt = $this->db->prepare("SELECT id FROM Users WHERE username = ?");
+			$stmt->bindParam(1, $username);
+			try{
+				$stmt->execute();
+				if($stmt->rowCount() > 0){
+					return false;
+				}
+				else{
+					return true;
+				}				
+			}
+			catch(Exception $e){
+				return false;
 			}
 		}
 	}

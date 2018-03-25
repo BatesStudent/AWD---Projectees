@@ -69,6 +69,14 @@ class Notification{
 		}
 	}
 	
+	public function markRead(){
+		$this->readState = 1;
+		$stmt = $this->db->prepare("UPDATE Notifications SET readState = 1 WHERE id = ?");
+		$stmt->bindParam(1, $this->nid);
+		$stmt->execute();
+		
+	}
+	
 }
 
 ?>

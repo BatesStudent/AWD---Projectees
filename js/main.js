@@ -19,4 +19,35 @@
         closeOnSelect: true // Close upon selecting a date, 
      });
      
+	 
+	 
+	 $('#notificationDrop').on('click',function(){
+		$('#notificationBadge').css('display','none');
+	 });
+	 $('.n').on('click',function(){
+		 var n = $(this);
+		 $.ajax({
+			url : "includes/notificationsRead.php",
+			method : "post",
+			 data : {nid : n.data('nid')}
+		}).done(function(data){
+			 console.log(data);
+			n.addClass('read');
+		});
+	 });
+	 
+	 $('#uName').on('change',function(){
+		 var username = $(this).val();
+		 $(this).parent('.input-field').find('.input-alert').remove();
+		 $.ajax({
+			url : "includes/checkUsername.php",
+			 method : 'post',
+			 data : {username : username}			 
+		 }).done(function(data){
+			 if(data != ""){
+				 $('#uName').parent('.input-field').append("<span class='input-alert'>"+data+"</span>");
+				 $('#uName').removeClass('valid').addClass('invalid');
+			 }
+		 });
+	 });
   });

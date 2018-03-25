@@ -1,8 +1,8 @@
 
-	<section class="circle-bottom-section full-height light-blue center-align">
-		<div class="container  white-text">
+	<section class="circle-bottom-section full-height light-blue accent-4 center-align">
+		<div class="container white-text">
 			<div>
-				<div class="row introw">
+				<div class="row introw center-align">
 					<h1>Welcome to Projectees!</h1>
 					<p class="flow-text">We are a community of inventive, creative and hard-working people who are here to get stuff done!</p>
 				</div>
@@ -11,7 +11,7 @@
 	</section>
 	<section class="grey lighten-4 circle-top-section full-height center-align">
 		<img src="img/ProjCircleGW@1.5x.png" style="position:absolute;top:0px;left:50%; transform:translateY(-50%) translateX(-50%); max-width: 100px;">
-		<div class="container">
+		<div class="container center-align">
 			<h2>So...who are you?</h2>
 			<p>What's your deal? Are you here to find project team members or to be found by project team leaders? Time to make a choice! (Don't worry, there's no wrong choice and you can always be both!)</p>
 			<div class="row">
@@ -66,7 +66,7 @@
 				<div id="user-card-display" class="col m6 l6 s12">
 					<div class="card user-card center-align">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -82,7 +82,7 @@
 					</div>
 					<div class="card hoverable user-card center-align z-depth-3">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -98,7 +98,7 @@
 					</div>
 					<div class="card user-card center-align">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -115,7 +115,7 @@
 				</div>
 				<div class="col m6 l6 s12 right-align">
 					<h3>Projects need people</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
+					<p>Whoever it was that said 'two heads are better than one' was bang on. Projectees aims to take that concept a bit further though, allowing three, four, or a 100 heads to work on something.</p>					
 					<p>So, the first step on the road to project success is to add yourself to the group. By doing so, you get a cool card with your name on it - what's not to like?</p>
 				</div>
 			</div>
@@ -123,13 +123,13 @@
 
 				<div class="col m6 l6 s12 left-align">
 					<h3>People need projects</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
-					<p>At this point its up to you whether you start your own projects or search for the perfect one to get your teeth into.</p>
+					<p>Both the philosophers of old and the ponderers of now have spent millennia attempting to figure out why we're all here and what our purpose is but, its safe to say, no one has quite worked it out just yet.</p>
+					<p>We think our purpose is to just do some stuff - as much stuff as we can! Build pyramids, invent technology that will save the planet, create generation-defining art, make your garden look nice; anything is better than nothing!</p>
+					<p>With that said, its up to you whether you start your own projects or search for the perfect one to get your teeth into.</p>
 				</div>
 				<div id="project-card-display" class="col m6 l6 s12">
 					<div class="card  hoverable sticky-action project-card left-align">
-						<div class="cover-image grey lighten-3" style="background-image: url(img/ProjLogoG@0.5x.png)">
+						<div class="cover-image grey lighten-3" style="background-image: url(img/defaultbg.jpg)">
 							<span class="project-capacity new badge amber" data-badge-caption="spaces">2</span>
 							<img class="z-depth-2" src="img/default.jpg">
 						</div>
@@ -166,7 +166,7 @@
 				<div id="user-card-display" class="col m6 l6 s12">
 					<div class="card user-card center-align">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -182,7 +182,7 @@
 					</div>
 					<div class="card hoverable user-card center-align z-depth-3">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -198,7 +198,7 @@
 					</div>
 					<div class="card user-card center-align">
 						<div class="cover-image grey lighten-3">
-
+							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
 							<img src="img/default.jpg">
@@ -215,7 +215,8 @@
 				</div>
 				<div class="col m6 l6 s12 right-align">
 					<h3>The rest is up to you...</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat diam nisi, efficitur faucibus eros pulvinar sollicitudin. Etiam molestie nec leo vel posuere. Quisque eget ligula lectus.</p>
+					<p>So, what'll it be? Will you join the community of people trying their best to get some stuff started and finished?</p>
+					<p>Maybe, just maybe, you will change the world.</p>
 					<a class="waves-effect waves-light btn-large amber accent-3" href="index.php?p=register">Get Started</a>
 				</div>
 			</div>

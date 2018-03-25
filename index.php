@@ -1,4 +1,5 @@
 <?php 
+
 // http://php.net/manual/en/language.oop5.autoload.php
 spl_autoload_register(function ($class_name) {
     require_once __DIR__.'/classes/'.$class_name . '.class.php';
@@ -18,6 +19,7 @@ else if(isset($_SESSION['userid'])){
 else{
 	$getTitle = "home";
 }
+
 require_once "elements/header.php";
 require_once "pages/$getTitle.php";
 require_once "elements/footer.php";

@@ -23,9 +23,9 @@
 	<nav>
 		<div class="nav-wrapper light-blue">
 			<a href="index.php" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<ul id="nav-mobile" class="right ">
 				<li><a href="index.php?p=login" class="waves-effect waves-light btn light-blue accent-4">Login</a></li>
-				<li><a href="index.php?p=register" class="waves-effect waves-light btn light-blue accent-4">Register</a></li>
+				<li class="hide-on-med-and-down"><a href="index.php?p=register" class="waves-effect waves-light btn light-blue accent-4">Register</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -39,9 +39,13 @@
 			<div class="navbar-fixed">
 				<ul id="notificationlist" class="dropdown-content">
 				<?php $all = new Notification(false, $_SESSION['userid']); 
+					$newCount = 0;
 					foreach($all->all as $row){
+						if($row['readState'] == 0){
+							$newCount++;
+						}
 						?>
-					<li <?php if($row['readState'] == 1){ echo 'class="read"';} ?> data-nid="<?= $row['id'] ?>">
+					<li class="n <?php if($row['readState'] == 1){ echo 'read';} ?>" data-nid="<?= $row['id'] ?>">
 						<?php
 							if($row['link'] != NULL){
 								?>
@@ -61,6 +65,7 @@
 			</ul>
 				<nav class="z-depth-1">
 					<div class="nav-wrapper light-blue accent-4 greyText ">
+						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 						<a href="index.php?p=searchProjects" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
 						<form class="search-form">
 							<div class="input-field light-blue darken-3">
@@ -69,9 +74,9 @@
 								<i class="material-icons">close</i>
 							</div>
 						</form>
-						<ul id="nav-mobile" class="right hide-on-med-and-down">
-							<li><a class="dropdown-button" href="#!" data-activates="notificationlist"><i class="material-icons">notifications</i></a></li>
-							<li><a href="index.php?p=userSettings"><i class="material-icons">settings</i></a></li>
+						<ul id="nav-mobile" class="right">
+							<li><a id="notificationDrop" class="dropdown-button" href="#!" data-activates="notificationlist"><?php if($newCount > 0){ ?><span id="notificationBadge" class="new badge amber accent-4"><?= $newCount?></span><?php } ?><i class="material-icons left">notifications</i></a></li>
+							<li class="hide-on-med-and-down"><a href="index.php?p=userSettings"><i class="material-icons">settings</i></a></li>
 							<li><a href="index.php?p=newProject" class="btn-floating waves-effect waves-light amber accent-3"><i class="material-icons">add</i></a></li>
 						</ul>
 					</div>
@@ -84,7 +89,7 @@
 							<?php if(isset($user->coverPhoto)){ ?>
 							<img src="user_images/<?=$user->uid?>_img/<?=$user->coverPhoto?>" alt="User cover image">
 							<?php } else { ?>
-							<img src="img/smallbg.jpg" alt="User Profile picture">
+							<img src="img/smallbg.jpg" alt="User cover picture">
 							<?php } ?>
 						</div>
 						<a href="userProfile.html">
@@ -105,7 +110,7 @@
 							<a class="collapsible-header active">Projects<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li class="active"><a href="searchProjects.html">Search Projects</a></li>
+									<li class="active"><a href="index.php?p=search">Search Projects</a></li>
 									<li><a href="#!">My Projects</a></li>
 									<li><a href="#!">Create New Project<i class="material-icons right">add</i></a></li>
 								</ul>
@@ -115,8 +120,9 @@
 							<a class="collapsible-header">Users<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li><a href="searchUsers.html">Search Users</a></li>
-									<li><a href="userProfile.html">My Profile</a></li>
+									<li><a href="#">Search Users</a></li>
+									<li><a href="#">My Profile</a></li>
+									<li><a href="index.php?p=logout">Logout</a></li>
 								</ul>
 							</div>
 						</li>
