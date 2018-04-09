@@ -26,96 +26,98 @@ if(!isset($_SESSION['userid'])){
         if(isset($_POST['role']) && !empty($_POST['role'])){
             $user->setOccupation($_POST['role']);
         }
-			//Upload Image Here
-			if($_FILES['profilePicture']['tmp_name']){
-				//Let's add a random string of numbers to the start of the filename to make it unique!
-				$newFilename = md5(uniqid(rand(), true)).$_FILES['profilePicture']["name"];
-                $newDirName = './user_images/'.$user->uid . "_img/";
-                if(!file_exists($newDirName)){
-                    $newDir = mkdir($newDirName);
+        //Upload Image Here
+        if($_FILES['profilePicture']['tmp_name']){
+            //Let's add a random string of numbers to the start of the filename to make it unique!
+            $newFilename = md5(uniqid(rand(), true)).$_FILES['profilePicture']["name"];
+            $newDirName = './user_images/'.$user->uid . "_img/";
+            if(!file_exists($newDirName)){
+                $newDir = mkdir($newDirName);
+            }
+            $target_file = $newDirName . basename($newFilename);
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES['profilePicture']["tmp_name"]);
+            if($check === false) {
+                $error = "File is not an image!";
+            }
+
+            //Check file already exists - It really, really shouldn't!
+            if (file_exists($target_file)) {
+                $error = "Sorry, file already exists.";
+            }
+
+            // Check file size
+            if ($_FILES["profile_image"]["size"] > 500000) {
+                $error = "Sorry, your file is too large.";
+            }
+
+            // Allow certain file formats
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+            // Did we hit an error?
+            if ($error) {
+                echo $error;
+            } else {
+                //Save file
+                if (move_uploaded_file($_FILES['profilePicture']["tmp_name"], $target_file)) {
+                    // success
+                    $user->setProfileImage($newFilename);
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
                 }
-				$target_file = $newDirName . basename($newFilename);
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-				// Check if image file is a actual image or fake image
-			    $check = getimagesize($_FILES['profilePicture']["tmp_name"]);
-			    if($check === false) {
-			        $error = "File is not an image!";
-			    }
-
-			    //Check file already exists - It really, really shouldn't!
-				if (file_exists($target_file)) {
-					$error = "Sorry, file already exists.";
-				}
-
-				// Check file size
-				if ($_FILES["profile_image"]["size"] > 500000) {
-				    $error = "Sorry, your file is too large.";
-				}
-
-				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-				    $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-				}
-
-				// Did we hit an error?
-				if ($error) {
-				    echo $error;
-				} else {
-					//Save file
-				    if (move_uploaded_file($_FILES['profilePicture']["tmp_name"], $target_file)) {
-				        // success
-                        $user->setProfileImage($newFilename);
-				    } else {
-				        echo "Sorry, there was an error uploading your file.";
-				    }
-				}
-			}
+            }
+        }
         if($_FILES['coverPicture']['tmp_name']){
-				//Let's add a random string of numbers to the start of the filename to make it unique!
+            //Let's add a random string of numbers to the start of the filename to make it unique!
 
-				$newFilename = md5(uniqid(rand(), true)).$_FILES['coverPicture']["name"];
-                $newDirName = './user_images/'.$user->uid . "_img/";
-                if(!file_exists($newDirName)){
-                    $newDir = mkdir($newDirName);
+            $newFilename = md5(uniqid(rand(), true)).$_FILES['coverPicture']["name"];
+            $newDirName = './user_images/'.$user->uid . "_img/";
+            if(!file_exists($newDirName)){
+                $newDir = mkdir($newDirName);
+            }
+            $target_file = $newDirName . basename($newFilename);
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES['coverPicture']["tmp_name"]);
+            if($check === false) {
+                $error = "File is not an image!";
+            }
+
+            //Check file already exists - It really, really shouldn't!
+            if (file_exists($target_file)) {
+                $error = "Sorry, file already exists.";
+            }
+
+            // Check file size
+            if ($_FILES["coverPicture"]["size"] > 500000) {
+                $error = "Sorry, your file is too large.";
+            }
+
+            // Allow certain file formats
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+            // Did we hit an error?
+            if ($error) {
+                ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
+            } else {
+                //Save file
+                if (move_uploaded_file($_FILES['coverPicture']["tmp_name"], $target_file)) {
+                    // success
+                    $user->setCoverPhoto($newFilename);
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
                 }
-				$target_file = $newDirName . basename($newFilename);
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-				// Check if image file is a actual image or fake image
-			    $check = getimagesize($_FILES['coverPicture']["tmp_name"]);
-			    if($check === false) {
-			        $error = "File is not an image!";
-			    }
-
-			    //Check file already exists - It really, really shouldn't!
-				if (file_exists($target_file)) {
-					$error = "Sorry, file already exists.";
-				}
-
-				// Check file size
-				if ($_FILES["coverPicture"]["size"] > 500000) {
-				    $error = "Sorry, your file is too large.";
-				}
-
-				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-				    $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-				}
-
-				// Did we hit an error?
-				if ($error) {
-				    ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
-				} else {
-					//Save file
-				    if (move_uploaded_file($_FILES['coverPicture']["tmp_name"], $target_file)) {
-				        // success
-                        $user->setCoverPhoto($newFilename);
-				    } else {
-				        echo "Sorry, there was an error uploading your file.";
-				    }
-				}
-			}
+            }
+        }
+        $user = new User($_SESSION['userid']);
+        $profileDetails = $user->getProfile();
     }
     else{
                 
@@ -143,7 +145,7 @@ if(!isset($_SESSION['userid'])){
                 <input type="file" name="coverPicture" id="coverPicture" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled style="opacity:0.2"'; } ?>>
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" >
+                <input class="file-path validate" type="text">
             </div>
         </div>
     </div>
@@ -184,9 +186,20 @@ if(!isset($_SESSION['userid'])){
     </div>
     <div class="row">
         <div class="col s12">
+          Add a skill:
+          <div class="input-field inline">
+            <input id="skills" type="text" class="validate" placeholder="e.g. Breakdancing">    
+          </div>
+            <a class="btn waves-effect waves-light">
+                <i class="material-icons">check</i>
+            </a>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-  </button>            
+                <i class="material-icons right">send</i>
+            </button>            
         </div>
     </div>        
         </form>

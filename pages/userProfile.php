@@ -1,5 +1,14 @@
 <?php
 
+/* TODO:
+- improve PDO
+- mailgun
+- form validation
+- talk about the create profile thing in report
+- get skills and show them on profile page/add them/remove them etc
+*/
+
+
 if(isset($_GET['username'])){
 	$user = new User();
 	if($user->checkUsername($_GET['username']) == false){
@@ -9,9 +18,7 @@ if(isset($_GET['username'])){
 		//explode the date to get month, day and year
 		$birthDate = explode("-", $birthDate);
 		//get age from date or birthdate
-		$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md")
-		? ((date("Y") - $birthDate[0]) - 1)
-		: (date("Y") - $birthDate[0]));
+		$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
 	}
 	else{
 	?>
@@ -26,8 +33,7 @@ else{
 <?
 	return;
 }
-  
-  
+
 ?>
 <section class="profile-head">
 	<div class="row">

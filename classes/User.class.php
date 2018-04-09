@@ -41,9 +41,10 @@
 		public function setEmail($email,$password){
 			if($this->verifyPassword($password) && filter_var($email, FILTER_VALIDATE_EMAIL)){
 				// prepare statement
-				$stmt = $this->db->prepare("UPDATE Users SET email = ? WHERE id = $this->uid;");
+				$stmt = $this->db->prepare("UPDATE Users SET email = :email WHERE id = :uid;");
 				// bind params
-				$stmt->bindParam(1, $email);
+				$stmt->bindParam(':email', $email);
+                $stmt->bindParam(':uid', $this->uid);
 				try{
 					// attempt to execute the sql statement
 					$stmt->execute();
@@ -82,11 +83,11 @@
 		
 		public function logIn($email, $password){
 			if(empty($email) || empty($password)){
-				return false;
+				return "Please fill in all fields.";
 			}
 			// check if the submitted email address is valid
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				return false;
+				return "Please enter a valid email address";
 			}
 			else{
 				// prepare select statement
@@ -99,7 +100,8 @@
 					// if there is a row with a matching email AND the passwords match, log the user in
 					while ($row = $stmt->fetch(PDO::FETCH_OBJ)){ 
 						if($row->activated != 1){
-							return false;
+                            $error = "Hmm... Have you activated your account? (Check your emails!)";
+							return $error;
 						}
 						else if(password_verify($password, $row->password)){
 							$this->uid = $row->id;
@@ -107,12 +109,12 @@
 							return true;
 						}
 						else{
-							return false;
+							return "Credentials do not match!";
 						}
 					}
 				}
 				catch(Exception $e){
-					return false;
+					return "Something went wrond on our end, please get in touch if the problem persists.";
 				}
 				return false;
 			}
@@ -120,13 +122,14 @@
 		public function getProfile($username = false){
 			
 			if($username == false){
-				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
+				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = ?");
+                $stmt->bindParam(1, $this->uid);
 				try{
 					$stmt->execute();
 					return $stmt->fetch(PDO::FETCH_OBJ);
 				}
 				catch(Exception $e){
-					return $e;
+					return false;
 				}
 			}
 			else{
@@ -137,7 +140,7 @@
 					return $stmt->fetch(PDO::FETCH_OBJ);
 				}
 				catch(Exception $e){
-					return $e;
+					return false;
 				}
 			}
 		}
@@ -219,8 +222,9 @@
             }
         }
         public function setCoverPhoto($new){
-            $stmt = $this->db->prepare("UPDATE Users SET coverPhoto = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET coverPhoto = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -341,6 +345,68 @@
 				return false;
 			}
 		}
+        
+        public function addSkill($skill){
+            // does user already have this skill?
+            $stmt = $this->db->prepare("SELECT name FROM usersSkills WHERE id = $this->uid AND name = ?");
+            $stmt->bindParam(1, $skill);
+            try{
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+					return false;
+				}
+                else {
+                    // does this skill already exist?
+                    $stmt = $this->db->prepare("SELECT id FROM Skills WHERE name = ?");
+                    $stmt->bindParam(1, $skill);
+                    try{
+                        $stmt->execute();
+                        if($stmt->rowCount() > 0){
+                            // the skill does exist so no need to add it, just link to its ID
+                            $row = $stmt->fetch(PDO::FETCH_OBJ);
+                            $skillID = $row->id;
+                            $stmt = $this->db->prepare("INSERT INTO UserSkills (userID, skillID) VALUES (?, ?)");
+                            $stmt->bindParam(1, $this->uid);
+                            $stmt->bindParam(2, $skillID);
+                            try{
+                                $stmt->execute();
+                                return true;
+                            }
+                            catch (Exception $e){
+                                return false;
+                            }
+                        } else {
+                            // we need to add the skill to the skills table first
+                            $stmt = $this->db->prepare("INSERT INTO Skills (name) VALUES (?)");
+                            $stmt->bindParam(1, $skill);
+                            try{
+                                $stmt->execute();
+                                $skillID = $this->db->lastInsertId();
+                                $stmt = $this->db->prepare("INSERT INTO UserSkills (userID, skillID) VALUES (?,?)");
+                                $stmt->bindParam(1, $this->uid);
+                                $stmt->bindParam(2, $skillID);
+                                try{
+                                    $stmt->execute();
+                                    return true;
+                                }
+                                catch (Exception $e){
+                                    return true;
+                                }
+                            }
+                            catch (Exception $e){
+                                return false;
+                            }
+                        }
+                    }
+                    catch (Exception $e){
+                        return false;
+                    }
+                }
+            }
+            catch (Exception $e){
+                return false;
+            }
+        }
 	}
 			
 ?>

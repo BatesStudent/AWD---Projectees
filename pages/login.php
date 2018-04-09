@@ -6,13 +6,14 @@ if(isset($_POST['action'])){
     if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && !empty(trim($_POST['password']))){
         // register the user
         $user = new User();
-        if($user->login($_POST['email'], trim($_POST['password'])) == true){
+        $loginSuccess = $user->login($_POST['email'], trim($_POST['password']));
+        if($loginSuccess == true){
             $_SESSION['userid'] = $user->uid;
             echo "<script>window.location.assign('index.php?p=searchProjects');</script>";
             exit;
         }
         else{
-            echo "<script>Materialize.toast('Eek, login details did not match!',4000);</script>";
+            echo "<script>Materialize.toast('".$loginSuccess."',4000);</script>";
         }
     }
     else{
