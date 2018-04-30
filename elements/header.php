@@ -15,7 +15,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 </head>
 
-
 <?php if(!isset($_SESSION['userid'])){
 	?>
 

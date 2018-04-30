@@ -119,10 +119,14 @@
 				return false;
 			}
 		}
-		public function getProfile($username = false){
-			
+        
+		public function getProfile($allinfo = false, $username = false){
 			if($username == false){
-				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = ?");
+                if($allinfo){
+				    $stmt = $this->db->prepare("SELECT * FROM userProfile_all WHERE id = ? LIMIT 1");
+                } else {
+                    $stmt = $this->db->prepare("SELECT * FROM userProfile_limited WHERE id = ? LIMIT 1");
+                }
                 $stmt->bindParam(1, $this->uid);
 				try{
 					$stmt->execute();
@@ -133,7 +137,11 @@
 				}
 			}
 			else{
-				$stmt = $this->db->prepare("SELECT id, fName, sName, email, linkedin, profilePic, username, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE username = ?");
+                if($allinfo){
+				    $stmt = $this->db->prepare("SELECT * FROM userProfile_all WHERE username = ?");
+                } else {
+                    $stmt = $this->db->prepare("SELECT * FROM userProfile_limited WHERE username = ?");
+                }
 				$stmt->bindParam(1, $username);
 				try{
 					$stmt->execute();
@@ -144,6 +152,7 @@
 				}
 			}
 		}
+        
         public function setLinkedIn($new){
             $stmt = $this->db->prepare("UPDATE Users SET linkedin = ? WHERE id = $this->uid");
             $stmt->bindParam(1, $new);
@@ -155,6 +164,7 @@
                 return false;
             }
         }
+        
         public function setDOB($new){
             $stmt = $this->db->prepare("UPDATE Users SET dateOfBirth = ? WHERE id = $this->uid");
             $stmt->bindParam(1, $new);
@@ -348,12 +358,13 @@
         
         public function addSkill($skill){
             // does user already have this skill?
-            $stmt = $this->db->prepare("SELECT name FROM usersSkills WHERE id = $this->uid AND name = ?");
-            $stmt->bindParam(1, $skill);
+            $stmt = $this->db->prepare("SELECT name FROM usersSkills WHERE userID = ? AND name = ?");
+            $stmt->bindParam(1, $this->uid);
+            $stmt->bindParam(2, $skill);
             try{
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
-					return false;
+					return "You already have this skill!";
 				}
                 else {
                     // does this skill already exist?

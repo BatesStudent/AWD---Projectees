@@ -119,95 +119,90 @@ if(!isset($_SESSION['userid'])){
         $user = new User($_SESSION['userid']);
         $profileDetails = $user->getProfile();
     }
-    else{
-                
-    }
 ?>
 <section>
-<div class="container">
-    
-    <form method="post" action="index.php?p=createProfile"  enctype="multipart/form-data">
-<div class="row">
-    <h1>Let's finish that profile...</h1>
-    <p>Don't worry, you don't have to fill in all these fields (typing fatigue is a real thing) - just fill in as many as you can/want to. It's for your benefit as it means other people will know what you're all about!</p>
-        <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->profilePic)){ echo "amber lighten-5"; } ?>">
-            <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled'; }?> >
-                <span>Profile Picture</span>
-                <input type="file" name="profilePicture" id="profilePicture" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled style="opacity:0.2"'; } ?>>
+    <div class="container">    
+        <form class="prevent-enter-submit" method="post" action="index.php?p=createProfile" enctype="multipart/form-data">
+            <div class="row">
+            <h1>Let's finish that profile...</h1>
+            <p>Don't worry, you don't have to fill in all these fields (typing fatigue is a real thing, you know) - just fill in as many as you can/want to. It's for your benefit as it means other people will know what you're all about!</p>
+            <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->profilePic)){ echo "amber lighten-5"; } ?>">
+                <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled'; }?> >
+                    <span>Profile Picture</span>
+                    <input type="file" name="profilePicture" id="profilePicture" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled style="opacity:0.2"'; } ?>>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+            <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->coverPhoto)){ echo "amber lighten-5"; } ?>">
+                <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled'; }?> >
+                    <span>Cover Picture</span>
+                    <input type="file" name="coverPicture" id="coverPicture" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled style="opacity:0.2"'; } ?>>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
         </div>
-        <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->coverPhoto)){ echo "amber lighten-5"; } ?>">
-            <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled'; }?> >
-                <span>Cover Picture</span>
-                <input type="file" name="coverPicture" id="coverPicture" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled style="opacity:0.2"'; } ?>>
+        <div class="row">
+            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->location)){ echo "amber lighten-5"; } ?>">
+                <input name="location" type="text" class="validate " placeholder="e.g. London, UK" <?php if(isset($profileDetails) && !empty($profileDetails->location)){ ?> value="<?php echo $profileDetails->location ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+                <label for="location">Location <small>(Be as specific as you like)</small></label>
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->dateOfBirth)){ echo "amber lighten-5"; } ?>">
+                <input name="dob" type="text" class="datepicker" placeholder="1996-04-22" <?php if(isset($profileDetails) && !empty($profileDetails->dateOfBirth)){ ?> value="<?php echo $profileDetails->dateOfBirth ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+                <label for="dob">Date of Birth</label>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->location)){ echo "amber lighten-5"; } ?>">
-            <input name="location" type="text" class="validate " placeholder="e.g. London, UK" <?php if(isset($profileDetails) && !empty($profileDetails->location)){ ?> value="<?php echo $profileDetails->location ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
-            <label for="location">Location <small>(Be as specific as you like)</small></label>
-        </div>
-        <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->dateOfBirth)){ echo "amber lighten-5"; } ?>">
-            <input name="dob" type="text" class="datepicker" placeholder="1996-04-22" <?php if(isset($profileDetails) && !empty($profileDetails->dateOfBirth)){ ?> value="<?php echo $profileDetails->dateOfBirth ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
-            <label for="dob">Date of Birth</label>
-        </div>
-    </div>
         
-    <div class="row">
-        
-        <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->occupation)){ echo "amber lighten-5"; } ?>">
-            <input name="role" type="text" class="validate" placeholder="e.g. Web Developer, Violinist, Gardener, Olympic Gymnast" <?php if(isset($profileDetails) && !empty($profileDetails->occupation)){ ?> value="<?php echo $profileDetails->occupation ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
-            <label for="role">Occupation <small>(Don't have one? That's okay, what's your dream job?)</small></label>
+        <div class="row">
+            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->occupation)){ echo "amber lighten-5"; } ?>">
+                <input name="role" type="text" class="validate" placeholder="e.g. Web Developer, Violinist, Gardener, Olympic Gymnast" <?php if(isset($profileDetails) && !empty($profileDetails->occupation)){ ?> value="<?php echo $profileDetails->occupation ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+                <label for="role">Occupation <small>(Don't have one? That's okay, what's your dream job?)</small></label>
+            </div>
+            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->linkedin)){ echo "amber lighten-5"; } ?>">
+                <input name="linkedin" type="text" class="validate" placeholder="https://www.linkedin.com/in/YOUR_LINK" <?php if(isset($profileDetails) && !empty($profileDetails->linkedin)){ ?> value="<?php echo $profileDetails->linkedin ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+                <label for="linkedin">LinkedIn Profile</label>
+            </div>
         </div>
-        <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->linkedin)){ echo "amber lighten-5"; } ?>">
-            <input name="linkedin" type="text" class="validate" placeholder="https://www.linkedin.com/in/YOUR_LINK" <?php if(isset($profileDetails) && !empty($profileDetails->linkedin)){ ?> value="<?php echo $profileDetails->linkedin ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
-            <label for="linkedin">LinkedIn Profile</label>
+        <div class="row <?php if(isset($profileDetails) && empty($profileDetails->intro)){ echo "amber lighten-5"; } ?>">
+
+            <div class="input-field col s12">
+                <textarea name="quote" class="materialize-textarea" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" <?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo 'disabled style="opacity:0.2"'; }?> ><?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo $profileDetails->intro;  } ?></textarea>
+                <label for="quote">Introductory quote</label>
+            </div>
         </div>
-    </div>
-    <div class="row <?php if(isset($profileDetails) && empty($profileDetails->intro)){ echo "amber lighten-5"; } ?>">
-        
-        <div class="input-field col s12">
-            <textarea name="quote" class="materialize-textarea" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" <?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo 'disabled style="opacity:0.2"'; }?> ><?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo $profileDetails->intro;  } ?></textarea>
-            <label for="quote">Introductory quote</label>
+        <div class="row <?php if(isset($profileDetails) && empty($profileDetails->description)){ echo "amber lighten-5"; } ?>">
+            <div class="input-field col s12 ">
+                <textarea name="pd" class="materialize-textarea " placeholder="You can go into as much or as little detail as you want here! Who are you, what makes you interesting, what are you looking for in a project?" <?php if(isset($profileDetails) && !empty($profileDetails->description)){ echo 'disabled style="opacity:0.2"'; }?>><?php if(isset($profileDetails) && !empty($profileDetails->description)){  echo $profileDetails->description;  } ?></textarea>
+                <label for="pd">Personal Description</label>
+            </div>
         </div>
-    </div>
-    <div class="row <?php if(isset($profileDetails) && empty($profileDetails->description)){ echo "amber lighten-5"; } ?>">
-        <div class="input-field col s12 ">
-            <textarea name="pd" class="materialize-textarea " placeholder="You can go into as much or as little detail as you want here! Who are you, what makes you interesting, what are you looking for in a project?" <?php if(isset($profileDetails) && !empty($profileDetails->description)){ echo 'disabled style="opacity:0.2"'; }?>><?php if(isset($profileDetails) && !empty($profileDetails->description)){  echo $profileDetails->description;  } ?></textarea>
-            <label for="pd">Personal Description</label>
+        <div class="row">
+            <div class="col s12">
+              Add a skill:
+              <div class="input-field inline">
+                  <input id="skills" type="text" class="validate" placeholder="e.g. Breakdancing">    
+              </div>
+                <a class="btn waves-effect waves-light" id="skill-add">
+                    <i class="material-icons">check</i>
+                </a>  
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-          Add a skill:
-          <div class="input-field inline">
-            <input id="skills" type="text" class="validate" placeholder="e.g. Breakdancing">    
-          </div>
-            <a class="btn waves-effect waves-light">
-                <i class="material-icons">check</i>
-            </a>  
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>            
-        </div>
-    </div>        
-        </form>
-    <div class="row">
-        <div class="progress">
-          <div class="determinate" style="width: <?= $user->profileCompletion(); ?>%"></div>
+        <div class="row">
+            <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>            
+            </div>
         </div>        
-        <div>Profile completion: <?= $user->profileCompletion(); ?>%</div>
-    </div>
+        </form>
+        <div class="row">
+            <div class="progress">
+              <div class="determinate" style="width: <?= $user->profileCompletion(); ?>%"></div>
+            </div>        
+            <div>Profile completion: <?= $user->profileCompletion(); ?>%</div>
+        </div>
     </div>    
 </section>

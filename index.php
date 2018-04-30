@@ -6,11 +6,11 @@ spl_autoload_register(function ($class_name) {
 });
 session_start();
 
-// if an application page has been specified and the user is loggedin...
+// if an application page has been specified
 if(isset($_GET["p"])){
 	$getTitle = $_GET["p"];
 }
-// if a page is NOT specified but the user is logged in, go to the dashboard rather than the default home page
+// if a page is NOT specified but the user is logged in, go to the search screen rather than the default home page
 else if(isset($_SESSION['userid'])){
 	$user = new User($_SESSION['userid']);
 	$getTitle = "search";

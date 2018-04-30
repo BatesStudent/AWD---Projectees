@@ -10,15 +10,23 @@
 
 
 if(isset($_GET['username'])){
-	$user = new User();
+    if(isset($_SESSION['userid'])){
+	   $user = new User($_SESSION['userid']);
+    } else {
+        $user = new User();
+    }
 	if($user->checkUsername($_GET['username']) == false){
-		$profile = $user->getProfile($_GET['username']);		
-		// reference for age calculation: https://stackoverflow.com/questions/3776682/php-calculate-age
-		$birthDate = $profile->dateOfBirth;
-		//explode the date to get month, day and year
-		$birthDate = explode("-", $birthDate);
-		//get age from date or birthdate
-		$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
+        if(isset($_SESSION['userid'])){
+            $profile = $user->getProfile(true, $_GET['username']);
+            // reference for age calculation: https://stackoverflow.com/questions/3776682/php-calculate-age
+            $birthDate = $profile->dateOfBirth;            
+            //explode the date to get month, day and year
+            $birthDate = explode("-", $birthDate);
+            //get age from date or birthdate
+            $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
+        } else {
+            $profile = $user->getProfile(false, $_GET['username']);
+        }		
 	}
 	else{
 	?>
@@ -61,9 +69,9 @@ else{
 						<div class="card-content">
 							<div>Occupation: <?= (!empty($profile->occupation)) ? $profile->occupation : "Undecided" ?></div>
 							<div>Age: <?= (isset($_SESSION['userid'])) ? $age : "Login to see." ?></div>
-							<div>Location: <?= (!empty($profile->location)) ? $profile->location : "Earth" ?></div>
+							<div>Location: <?= (!empty($profile->location)) ? $profile->location : "Earth...probably." ?></div>
 							<div>Username: @<?= $profile->username ?></div>
-							<div>LinkedIn: <?php if(!empty($profile->linkedin)){ ?><a href="<?= $profile->linkedin ?>">View Profile</a><?php } else { echo "Not given."; }?> </div>
+							<div>LinkedIn: <?php if(!empty($profile->linkedin) && isset($_SESSION['userid'])){ ?><a href="<?= $profile->linkedin ?>">View Profile</a><?php } else { echo "Login to see."; }?> </div>
 						</div>
 						<div class="card-action">
 							<a class="waves-effect waves-light btn-large amber accent-3">Message</a>
@@ -74,11 +82,7 @@ else{
                     <h2>Description</h2>
                     <p><?= (!empty($profile->description)) ? $profile->description : "I am probably a real cool person, but I haven't written my description yet - d'oh!" ?></p>
                     <h2>Key Skills</h2>
-                    <div class="chip">Web Development</div>
-                    <div class="chip">Guitar</div>
-                    <div class="chip">Blogging</div>
-                    <div class="chip">Public Speaking</div>
-                    <div class="chip">Creativity</div>					
+                        <?php foreach(explode(',', $profile->skillList) as $skill){ ?> <div class="chip"><?= $skill ?></div> <?php } ?>
 					<h2>Recent Projects</h2>
 					<div class="row">
 						<div class="col s12 results">
