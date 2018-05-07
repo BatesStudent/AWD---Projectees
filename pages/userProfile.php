@@ -17,6 +17,7 @@ if(isset($_GET['username'])){
     }
 	if($user->checkUsername($_GET['username']) == false){
         if(isset($_SESSION['userid'])){
+<<<<<<< HEAD
 			$ownProfile = false;
 			$editMode = false;
 			if($user->uName == $_GET['username']){
@@ -29,6 +30,9 @@ if(isset($_GET['username'])){
 			} else {
 				$profile = $user->getProfile(true, $_GET['username']);
 			}
+=======
+            $profile = $user->getProfile(true, $_GET['username']);
+>>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
             // reference for age calculation: https://stackoverflow.com/questions/3776682/php-calculate-age
             $birthDate = $profile->dateOfBirth;            
             //explode the date to get month, day and year
@@ -93,6 +97,7 @@ else{
                     <h2>Description</h2>
                     <p><?= (!empty($profile->description)) ? $profile->description : "I am probably a real cool person, but I haven't written my description yet - d'oh!" ?></p>
                     <h2>Key Skills</h2>
+<<<<<<< HEAD
 					<div class="skill-chips">
 					<?php foreach(explode(',', $profile->skillList) as $skill){ 
 						if($editMode){
@@ -124,6 +129,9 @@ else{
 						}
 					?>
 					
+=======
+                        <?php foreach(explode(',', $profile->skillList) as $skill){ ?> <div class="chip"><?= $skill ?></div> <?php } ?>
+>>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
 					<h2>Recent Projects</h2>
 					<div class="row">
 						<div class="col s12 results">

@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 $(document).ready(function() {
     $('select').formSelect();
   	$(".button-collapse").sidenav();
     $(".dropdown-trigger").dropdown();
+=======
+ $(document).ready(function() {
+    $('select').material_select();
+  	$(".button-collapse").sideNav();
+    $(".dropdown-button").dropdown();
+>>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
     $('.activator').mouseenter(function(){
         $(this).click();
     });
@@ -71,6 +78,7 @@ $(document).ready(function() {
                 submitSkill(skillVal);
             }
         } else {
+<<<<<<< HEAD
             M.toast({html:'Whoops, no skill entered!'});
         }
      });
@@ -89,6 +97,11 @@ $(document).ready(function() {
 			}
          });
 	})
+=======
+            Materialize.toast('Whoops, no skill entered!');
+        }
+     });
+>>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
      
      function submitSkill(skill){
          $.ajax({
@@ -96,10 +109,14 @@ $(document).ready(function() {
              method: 'post',
              data: {skill: skill}
          }).done(function(data){
+<<<<<<< HEAD
             M.toast({html: data});
 			if(data == "Skill successfully added!"){
 				$('.skill-chips').append('<div class="chip" data-skill-name="'+skill+'">'+skill+'<i class="material-icons right removeSkill">clear</i></div>');
 			}
+=======
+            Materialize.toast(data, 4000);
+>>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
          });
      }
 });
