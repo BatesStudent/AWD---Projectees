@@ -7,7 +7,7 @@ if(isset($_POST['action'])){
         // register the user
         $user = new User();
         $loginSuccess = $user->login($_POST['email'], trim($_POST['password']));
-        if($loginSuccess == true){
+        if($loginSuccess === true){
             $_SESSION['userid'] = $user->uid;
             echo "<script>window.location.assign('index.php?p=searchProjects');</script>";
             exit;

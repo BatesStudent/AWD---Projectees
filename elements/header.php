@@ -7,14 +7,13 @@
 		<?= $getTitle?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css'>
+	<link rel='stylesheet' href='materialize-src/sass/materialize.css'>
 	<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 	<link rel="stylesheet" href="scss/style.css">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js'></script>
+	<script src='materialize-src/js/bin/materialize.min.js'></script>
 	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 </head>
-
 
 <?php if(!isset($_SESSION['userid'])){
 	?>
@@ -65,7 +64,7 @@
 			</ul>
 				<nav class="z-depth-1">
 					<div class="nav-wrapper light-blue accent-4 greyText ">
-						<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+						<a href="#" data-activates="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 						<a href="index.php?p=searchProjects" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
 						<form class="search-form">
 							<div class="input-field light-blue darken-3">
@@ -75,14 +74,21 @@
 							</div>
 						</form>
 						<ul id="nav-mobile" class="right">
-							<li><a id="notificationDrop" class="dropdown-button" href="#!" data-activates="notificationlist"><?php if($newCount > 0){ ?><span id="notificationBadge" class="new badge amber accent-4"><?= $newCount?></span><?php } ?><i class="material-icons left">notifications</i></a></li>
+							<li>
+								<a id="notificationDrop" class="dropdown-trigger" href="#!" data-target="notificationlist">
+								<?php if($newCount > 0){ ?>
+									<span id="notificationBadge" class="new badge amber accent-4"><?= $newCount?></span>
+									<?php } ?>
+									<i class="material-icons left">notifications</i>
+								</a>
+							</li>
 							<li class="hide-on-med-and-down"><a href="index.php?p=userSettings"><i class="material-icons">settings</i></a></li>
 							<li><a href="index.php?p=newProject" class="btn-floating waves-effect waves-light amber accent-3"><i class="material-icons">add</i></a></li>
 						</ul>
 					</div>
 				</nav>
 			</div>
-			<ul id="slide-out" class="side-nav fixed">
+			<ul id="slide-out" class="sidenav sidenav-fixed">
 				<li>
 					<div class="user-view">
 						<div class="background blue-grey darken-4">

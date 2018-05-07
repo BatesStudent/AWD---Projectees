@@ -333,6 +333,10 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
     .dropdown-content li.read {
       opacity: 0.4; }
 
+.removeSkill {
+  line-height: inherit;
+  cursor: pointer; }
+
 @media only screen and (max-width: 1024px) {
   .introw h1 {
     font-size: 40px; }

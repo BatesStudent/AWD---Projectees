@@ -1,24 +1,24 @@
- $(document).ready(function() {
-    $('select').material_select();
-  	$(".button-collapse").sideNav();
-	 $(".dropdown-button").dropdown();
-     $('.activator').mouseenter(function(){
+$(document).ready(function() {
+    $('select').formSelect();
+  	$(".button-collapse").sidenav();
+    $(".dropdown-trigger").dropdown();
+    $('.activator').mouseenter(function(){
         $(this).click();
     });
     $('.card-reveal').mouseleave(function(){
         $(this).find('.card-title').click();
     });
-     $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 100, // Creates a dropdown of 15 years to control year,
-         max: new Date(),
+     $('.datepicker').datepicker({
+        yearRange: [1,100], // Creates a dropdown of 100 years to control year,
+         maxDate: new Date(),
          format: 'yyyy-mm-dd',// Set limit to today's date
-        today: 'Today',
-        clear: 'Clear',
-        close: 'Ok',
-        closeOnSelect: true // Close upon selecting a date, 
+        autoClose: true,
+        firstDay: 1 // First day of week (0: Sunday, 1: Monday etc).        
      });
-     
+	$('.fixed-action-btn').floatingActionButton();
+	$('.collapsible').collapsible();
+	$('.tooltipped').tooltip();
+	
 	 // show the right sidenav tab as active
 	 $('li[data-active-title="'+document.title.split(" | ")[1] +'"]').addClass("active");
 	 
@@ -50,4 +50,56 @@
 			 }
 		 });
 	 });
-  });
+     
+     // reference for enter keypress event: https://stackoverflow.com/a/979686
+     $('form.prevent-enter-submit').keypress(function(e) {
+        if(e.which == 13) {
+            e.preventDefault();
+        }
+    });
+     
+     // skill change on profile creation page
+     $('#skill-add').on('click',function(){
+         var skillVal = $("#skills").val();
+         // check not empty
+        if(skillVal != ""){
+            // check if commas
+            if(skillVal.includes(",")){
+                var values = skillVal.split(',');
+                $(values).each(submitSkill);
+            } else {
+                submitSkill(skillVal);
+            }
+        } else {
+            M.toast({html:'Whoops, no skill entered!'});
+        }
+     });
+	
+	$('.removeSkill').on('click',function(){
+		var skill = $(this).parent().attr('data-skill-name');
+		var removeDiv = $(this).parent();
+		$.ajax({
+             url: 'includes/removeSkill.php',
+             method: 'post',
+             data: {skill: skill}
+         }).done(function(data){
+            M.toast({html: data});
+			if(data == "Skill successfully removed!"){
+				$(removeDiv).remove();
+			}
+         });
+	})
+     
+     function submitSkill(skill){
+         $.ajax({
+             url: 'includes/submitSkill.php',
+             method: 'post',
+             data: {skill: skill}
+         }).done(function(data){
+            M.toast({html: data});
+			if(data == "Skill successfully added!"){
+				$('.skill-chips').append('<div class="chip" data-skill-name="'+skill+'">'+skill+'<i class="material-icons right removeSkill">clear</i></div>');
+			}
+         });
+     }
+});
