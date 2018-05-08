@@ -169,7 +169,7 @@ if(!isset($_SESSION['userid'])){
         <div class="row <?php if(isset($profileDetails) && empty($profileDetails->intro)){ echo "amber lighten-5"; } ?>">
 
             <div class="input-field col s12">
-                <textarea name="quote" class="materialize-textarea" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" <?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo 'disabled style="opacity:0.2"'; }?> ><?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo $profileDetails->intro;  } ?></textarea>
+                <textarea name="quote" class="materialize-textarea character-counter" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" <?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo 'disabled style="opacity:0.2"'; }?> ><?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo $profileDetails->intro;  } ?></textarea>
                 <label for="quote">Introductory quote</label>
             </div>
         </div>

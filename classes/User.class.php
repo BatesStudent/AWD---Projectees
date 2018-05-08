@@ -199,8 +199,9 @@
             }
         }
         public function setDescription($new){
-            $stmt = $this->db->prepare("UPDATE Users SET description = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET description = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -210,8 +211,9 @@
             }
         }
         public function setIntro($new){
-            $stmt = $this->db->prepare("UPDATE Users SET intro = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET intro = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -221,8 +223,9 @@
             }
         }
         public function setProfileImage($new){
-            $stmt = $this->db->prepare("UPDATE Users SET profilePic = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET profilePic = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;

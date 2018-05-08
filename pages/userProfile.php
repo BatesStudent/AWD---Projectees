@@ -17,7 +17,6 @@ if(isset($_GET['username'])){
     }
 	if($user->checkUsername($_GET['username']) == false){
         if(isset($_SESSION['userid'])){
-<<<<<<< HEAD
 			$ownProfile = false;
 			$editMode = false;
 			if($user->uName == $_GET['username']){
@@ -29,10 +28,7 @@ if(isset($_GET['username'])){
 				}
 			} else {
 				$profile = $user->getProfile(true, $_GET['username']);
-			}
-=======
-            $profile = $user->getProfile(true, $_GET['username']);
->>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
+			}        
             // reference for age calculation: https://stackoverflow.com/questions/3776682/php-calculate-age
             $birthDate = $profile->dateOfBirth;            
             //explode the date to get month, day and year
@@ -60,17 +56,52 @@ else{
 ?>
 <section class="profile-head">
 	<div class="row">
-        <div class="col s12 cover-photo" <?php if(!empty($profile->coverPhoto)){?>style="background-image:url('user_images/<?=$profile->id?>_img/<?=$profile->coverPhoto?>')"<?php } ?>></div>
+        <div class="col s12 cover-photo" <?php if(!empty($profile->coverPhoto)){?>style="background-image:url('<?php if (strpos($profile->coverPhoto, 'unsplash.com') === false) { ?>'user_images/<?=$profile->id?>_img/<?=$profile->coverPhoto?><?php } else { echo $profile->coverPhoto; } } ?>')">
+            <?php if($editMode){ ?>
+            <div class="row cover-photo-buttons">
+                <a class="btn waves-effect waves-light upload-pic tooltipped" data-position="top" data-tooltip="Upload.">
+                    <i class="material-icons">file_upload</i>
+                </a>
+                <a class="btn waves-effect waves-light choose-unplash-pic tooltipped modal-trigger" data-target="unsplash-chooser" data-position="top" data-tooltip="Choose stock photo.">
+                    <i class="material-icons">filter</i>
+                </a>
+            </div>
+            <div id="unsplash-chooser" class="modal">
+                <div class="modal-content">
+                    <h4>Choose a stock image:</h4>
+                    <div class="slider">
+                        <ul class="slides unsplash-images">
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="modal-close waves-effect btn-flat">Close</a>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+             
         <div class="container profile-user">
 			<div class="row">
 				<div class="profile-pic col s4">
 					<div class="profile-pic-container z-depth-1">
-					<img  <?php if(!empty($profile->profilePic)){?>src="user_images/<?=$profile->id?>_img/<?=$profile->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="profile-pic">
-						</div>
+					   <img <?php if(!empty($profile->profilePic)){?>src="user_images/<?=$profile->id?>_img/<?=$profile->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="profile-pic">
+                    </div>
 				</div>
 				<div class="profile-intro col l8 m8 s12 ">
 					<h1 class="profile-name grey lighten-4 z-depth-1"><?= $profile->fName . ' ' . $profile->sName ?></h1>
-					<p class="profile-quote"><?= (!empty($profile->intro)) ? $profile->intro : "Welcome to my profile page!" ?></p>
+                    <?php if($editMode){ ?>
+                    <div class="input-field">
+				        <textarea class="profile-quote materialize-textarea character-counter" data-length="140"><?= (!empty($profile->intro)) ? trim($profile->intro) : "Welcome to my profile page!" ?></textarea>
+                        <label for="profile-quote">Description (long)</label>
+                    </div>
+                     <a class="btn waves-effect waves-light save-quote">
+                        <i class="material-icons">check</i>
+                    </a>
+                    <?php } else { ?>
+                    <p class="profile-quote"><?= (!empty($profile->intro)) ? $profile->intro : "Welcome to my profile page!" ?></p>
+                    <?php } ?>
 				</div>
 				</div>
         </div>
@@ -94,10 +125,19 @@ else{
 					</div>
                 </div>
                 <div class="col l8 m8 s12 profile-detail">
-                    <h2>Description</h2>
+                    <h2>Description</h2>                    
+                    <?php if($editMode){ ?>
+                    <div class="input-field">
+                         <textarea class="edit-description materialize-textarea" name="edit-description"><?= (!empty($profile->description)) ? $profile->description : "I am probably a real cool person, but I haven't written my description yet - d'oh!" ?></textarea>
+                        <label for="edit-description">Description (long)</label>
+                    </div>
+                    <a class="btn waves-effect waves-light save-description">
+                        <i class="material-icons">check</i>
+                    </a>  
+                    <?php } else {?>
                     <p><?= (!empty($profile->description)) ? $profile->description : "I am probably a real cool person, but I haven't written my description yet - d'oh!" ?></p>
+                    <?php } ?>
                     <h2>Key Skills</h2>
-<<<<<<< HEAD
 					<div class="skill-chips">
 					<?php foreach(explode(',', $profile->skillList) as $skill){ 
 						if($editMode){
@@ -128,10 +168,7 @@ else{
 							<?php
 						}
 					?>
-					
-=======
-                        <?php foreach(explode(',', $profile->skillList) as $skill){ ?> <div class="chip"><?= $skill ?></div> <?php } ?>
->>>>>>> 2517351fcc9d4fcbe9e67390baae894662ee8972
+			
 					<h2>Recent Projects</h2>
 					<div class="row">
 						<div class="col s12 results">
