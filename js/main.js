@@ -8,11 +8,25 @@ $(document).ready(function() {
     $('.card-reveal').mouseleave(function(){
         $(this).find('.card-title').click();
     });
-    $('.datepicker').datepicker({
+    $('.birthdatepicker').datepicker({
         yearRange: [1,100], // Creates a dropdown of 100 years to control year,
         maxDate: new Date(),
         format: 'yyyy-mm-dd',// Set limit to today's date
         autoClose: true,
+        firstDay: 1 // First day of week (0: Sunday, 1: Monday etc).        
+    });
+	$('.startdatepicker').datepicker({
+        format: 'yyyy-mm-dd',// Set limit to today's date
+        autoClose: true,
+		minDate: new Date(),
+		defaultDate: new Date(),
+		setDefaultDate: true,
+        firstDay: 1 // First day of week (0: Sunday, 1: Monday etc).        
+    });
+	$('.startdatepicker').datepicker({
+        format: 'yyyy-mm-dd',// Set limit to today's date
+        autoClose: true,
+		minDate: new Date(),
         firstDay: 1 // First day of week (0: Sunday, 1: Monday etc).        
     });
 	$('.fixed-action-btn').floatingActionButton();
@@ -20,6 +34,7 @@ $(document).ready(function() {
 	$('.tooltipped').tooltip();
     $('.character-counter').characterCounter();
     $('.modal').modal();
+	$('.tabs').tabs();
 	 // show the right sidenav tab as active
 	 $('li[data-active-title="'+document.title.split(" | ")[1] +'"]').addClass("active");
 	 

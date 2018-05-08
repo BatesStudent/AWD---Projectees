@@ -151,7 +151,7 @@ if(!isset($_SESSION['userid'])){
                 <label for="location">Location <small>(Be as specific as you like)</small></label>
             </div>
             <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->dateOfBirth)){ echo "amber lighten-5"; } ?>">
-                <input name="dob" type="text" class="datepicker" placeholder="1996-04-22" <?php if(isset($profileDetails) && !empty($profileDetails->dateOfBirth)){ ?> value="<?php echo $profileDetails->dateOfBirth ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+                <input name="dob" type="text" class="birthdatepicker" placeholder="1996-04-22" <?php if(isset($profileDetails) && !empty($profileDetails->dateOfBirth)){ ?> value="<?php echo $profileDetails->dateOfBirth ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
                 <label for="dob">Date of Birth</label>
             </div>
         </div>

@@ -1,4 +1,9 @@
 <?php
+/* TODO:
++ add default results from user skills or whatever
++ pagination
+*/
+
 
 $target = ((isset($_GET['target'])) ? $_GET['target'] : "both");
 $search = ((isset($_POST['search'])) ? $_POST['search'] : ((isset($_GET['search'])) ? $_GET['search'] : false));   
@@ -43,14 +48,14 @@ if($search !== false){
 ?>
 <section>
     <div class="row">
-        <div class="col s12 results">
+        <div class="col s12">
             <h1>Search results</h1>
             <?php if($error !== false){
                 echo "<p>$error</p>";
             } else { 
-                var_dump($userResults);
                 if(sizeof($userResults) > 0){
                     echo "<h2>Users</h2>";
+					echo "<div class='results'>";
                     foreach($userResults as $user){
                         ?>
                         <div class="card user-card center-align">
@@ -71,6 +76,7 @@ if($search !== false){
                         </div>
                         <?php
                     }
+					echo "</div>";
                 }
             ?>
             
