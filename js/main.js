@@ -111,7 +111,7 @@ $(document).ready(function() {
          });
     });
     
-    $('.choose-unplash-pic').on('click',getUnsplash);
+    
     
      function submitSkill(skill){
          $.ajax({
@@ -126,6 +126,7 @@ $(document).ready(function() {
          });
      }
     
+    $('.choose-unplash-pic').on('click',getUnsplash);
     
     function getUnsplash(){        
         $.ajax({
@@ -143,7 +144,6 @@ $(document).ready(function() {
                      method: 'post',
                      data: {src: src}
                  }).done(function(data){
-                    console.log(data);
                     M.toast({html: data});
                     if(data == "Cover photo successfully changed!"){
                         $('.cover-photo').css('background-image','url('+src+')');
@@ -153,5 +153,25 @@ $(document).ready(function() {
             $('.slider').slider();
          });
     }
+    
+    $('.save-occupation').on('click',function(){
+         $.ajax({
+             url: 'includes/editOccupation.php',
+             method: 'post',
+             data: {occupation: $('#occupation-edit').val()}
+         }).done(function(data){
+            M.toast({html: data});
+         });
+    });
+    
+    $('.save-location').on('click',function(){
+         $.ajax({
+             url: 'includes/editLocation.php',
+             method: 'post',
+             data: {location: $('#location-edit').val()}
+         }).done(function(data){
+            M.toast({html: data});
+         });
+    });
     
 });

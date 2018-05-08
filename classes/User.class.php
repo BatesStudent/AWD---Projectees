@@ -188,8 +188,9 @@
             }
         }
         public function setOccupation($new){
-            $stmt = $this->db->prepare("UPDATE Users SET occupation = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET occupation = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;

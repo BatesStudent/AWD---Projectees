@@ -66,9 +66,9 @@
 					<div class="nav-wrapper light-blue accent-4 greyText ">
 						<a href="#" data-activates="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 						<a href="index.php?p=searchProjects" class="brand-logo"> <img src="img/ProjCircleWhite@0.5x.png" alt="Projectees Logo"></a>
-						<form class="search-form">
+						<form class="search-form" method="post" action="index.php?p=search">
 							<div class="input-field light-blue darken-3">
-								<input id="search" type="search" placeholder="Search" required>
+								<input id="search" name="search" type="search" placeholder="Search" required>
 								<label class="label-icon" for="search"><i class="material-icons">search</i></label>
 								<i class="material-icons">close</i>
 							</div>

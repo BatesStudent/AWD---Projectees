@@ -3,13 +3,13 @@ spl_autoload_register(function ($class_name) {
     require_once '../classes/'.$class_name . '.class.php';
 });
 session_start();
-if(isset($_SESSION['userid']) && isset($_POST['src'])){
-    $src = $_POST['src'];
-    if($src != ""){
-        $u = new User($_SESSION['userid']);        
-        $result = $u->setCoverPhoto($src);
+if(isset($_SESSION['userid']) && isset($_POST['occupation'])){
+    $occ = trim(strip_tags($_POST['occupation']));
+    if($occ != ""){
+        $u = new User($_SESSION['userid']);
+        $result = $u->setOccupation($occ);
         if($result === true){
-            echo "Cover photo successfully changed!";
+            echo "Occupation successfully changed!";
         } else if($result !== false) {
             echo $result;
         } else {

@@ -5,16 +5,18 @@
 - mailgun
 - form validation
 - talk about the create profile thing in report
-- get skills and show them on profile page/add them/remove them etc
 */
 
 
+
+// get a users profile
 if(isset($_GET['username'])){
     if(isset($_SESSION['userid'])){
 	   $user = new User($_SESSION['userid']);
     } else {
-        $user = new User();
+       $user = new User();
     }
+    // check username exits
 	if($user->checkUsername($_GET['username']) == false){
         if(isset($_SESSION['userid'])){
 			$ownProfile = false;
@@ -24,7 +26,102 @@ if(isset($_GET['username'])){
 				$ownProfile = true;
             	$profile = $user->getProfile(true);
 				if($_GET['edit'] == "true"){
+                    // user wants to edit profile
 					$editMode = true;
+                    if(isset($_POST['cover-upload-action'])){
+                         if($_FILES['cover-photo']['tmp_name']){
+                            //Let's add a random string of numbers to the start of the filename to make it unique!
+                            $newFilename = md5(uniqid(rand(), true)).$_FILES['cover-photo']["name"];
+                            $newDirName = './user_images/'.$user->uid . "_img/";
+                            if(!file_exists($newDirName)){
+                                $newDir = mkdir($newDirName);
+                            }
+                            $target_file = $newDirName . basename($newFilename);
+                            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                            // Check if image file is a actual image or fake image
+                            $check = getimagesize($_FILES['cover-photo']["tmp_name"]);
+                            if($check === false) {
+                                $error = "File is not an image!";
+                            }
+
+                            //Check file already exists - It really, really shouldn't!
+                            if (file_exists($target_file)) {
+                                $error = "Sorry, file already exists.";
+                            }
+
+                            // Check file size
+                            if ($_FILES["cover-photo"]["size"] > 500000) {
+                                $error = "Sorry, your file is too large.";
+                            }
+
+                            // Allow certain file formats
+                            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                                $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                            }
+
+                            // Did we hit an error?
+                            if ($error) {
+                                ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
+                            } else {
+                                //Save file
+                                if (move_uploaded_file($_FILES['cover-photo']["tmp_name"], $target_file)) {
+                                    // success
+                                    $user->setCoverPhoto($newFilename);
+                                    $profile = $user->getProfile(true);
+                                } else {
+                                    echo "Sorry, there was an error uploading your file.";
+                                }
+                            }
+                        }
+                    }
+                    if(isset($_POST['profile-upload-action'])){
+                         if($_FILES['profile-photo']['tmp_name']){
+                            //Let's add a random string of numbers to the start of the filename to make it unique!
+                            $newFilename = md5(uniqid(rand(), true)).$_FILES['profile-photo']["name"];
+                            $newDirName = './user_images/'.$user->uid . "_img/";
+                            if(!file_exists($newDirName)){
+                                $newDir = mkdir($newDirName);
+                            }
+                            $target_file = $newDirName . basename($newFilename);
+                            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                            // Check if image file is a actual image or fake image
+                            $check = getimagesize($_FILES['profile-photo']["tmp_name"]);
+                            if($check === false) {
+                                $error = "File is not an image!";
+                            }
+
+                            //Check file already exists - It really, really shouldn't!
+                            if (file_exists($target_file)) {
+                                $error = "Sorry, file already exists.";
+                            }
+
+                            // Check file size
+                            if ($_FILES["profile-photo"]["size"] > 500000) {
+                                $error = "Sorry, your file is too large.";
+                            }
+
+                            // Allow certain file formats
+                            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                                $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                            }
+
+                            // Did we hit an error?
+                            if ($error) {
+                                ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
+                            } else {
+                                //Save file
+                                if (move_uploaded_file($_FILES['profile-photo']["tmp_name"], $target_file)) {
+                                    // success
+                                    $user->setProfileImage($newFilename);
+                                    $profile = $user->getProfile(true);
+                                } else {
+                                    echo "Sorry, there was an error uploading your file.";
+                                }
+                            }
+                        }
+                    }
 				}
 			} else {
 				$profile = $user->getProfile(true, $_GET['username']);
@@ -34,7 +131,7 @@ if(isset($_GET['username'])){
             //explode the date to get month, day and year
             $birthDate = explode("-", $birthDate);
             //get age from date or birthdate
-            $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
+            $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[0], $birthDate[1]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
         } else {
             $profile = $user->getProfile(false, $_GET['username']);
         }		
@@ -56,19 +153,36 @@ else{
 ?>
 <section class="profile-head">
 	<div class="row">
-        <div class="col s12 cover-photo" <?php if(!empty($profile->coverPhoto)){?>style="background-image:url('<?php if (strpos($profile->coverPhoto, 'unsplash.com') === false) { ?>'user_images/<?=$profile->id?>_img/<?=$profile->coverPhoto?><?php } else { echo $profile->coverPhoto; } } ?>')">
+        <div class="col s12 cover-photo" <?php if(!empty($profile->coverPhoto)){?>style="background-image:url('<?php if (strpos($profile->coverPhoto, 'unsplash.com') === false) { ?>user_images/<?=$profile->id?>_img/<?=$profile->coverPhoto?><?php } else { echo $profile->coverPhoto; } } ?>')">
             <?php if($editMode){ ?>
             <div class="row cover-photo-buttons">
-                <a class="btn waves-effect waves-light upload-pic tooltipped" data-position="top" data-tooltip="Upload.">
+                <a class="btn waves-effect waves-light upload-pic tooltipped modal-trigger" data-target="upload-chooser" data-position="top" data-tooltip="Upload.">
                     <i class="material-icons">file_upload</i>
                 </a>
                 <a class="btn waves-effect waves-light choose-unplash-pic tooltipped modal-trigger" data-target="unsplash-chooser" data-position="top" data-tooltip="Choose stock photo.">
                     <i class="material-icons">filter</i>
                 </a>
             </div>
+            <div id="upload-chooser" class="modal">
+                <div class="modal-content">
+                    <h4>Upload an image:</h4>
+                    <form id="cover-upload" method="post" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                          <div class="btn">
+                            <span>File</span>
+                            <input type="file" name="cover-photo">
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                          </div>
+                        </div>
+                        <button class="modal-close waves-effect btn-flat" type="submit" name="cover-upload-action">Save</button>
+                    </form>
+                </div>
+            </div>
             <div id="unsplash-chooser" class="modal">
                 <div class="modal-content">
-                    <h4>Choose a stock image:</h4>
+                    <h4>Choose a stock image: <small>(click to choose)</small></h4>
                     <div class="slider">
                         <ul class="slides unsplash-images">
                             
@@ -87,7 +201,30 @@ else{
 				<div class="profile-pic col s4">
 					<div class="profile-pic-container z-depth-1">
 					   <img <?php if(!empty($profile->profilePic)){?>src="user_images/<?=$profile->id?>_img/<?=$profile->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="profile-pic">
+                        
                     </div>
+                    <?php if($editMode){ ?>
+                    <a class="btn waves-effect waves-light upload-pic tooltipped modal-trigger" data-target="upload-chooser-profile" data-position="top" data-tooltip="Upload">
+                        <i class="material-icons">file_upload</i>
+                    </a>
+                    <div id="upload-chooser-profile" class="modal">
+                        <div class="modal-content">
+                            <h4>Upload an image:</h4>
+                            <form id="profile-upload" method="post" enctype="multipart/form-data">
+                                <div class="file-field input-field">
+                                  <div class="btn">
+                                    <span>File</span>
+                                    <input type="file" name="profile-photo">
+                                  </div>
+                                  <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                  </div>
+                                </div>
+                                <button class="modal-close waves-effect btn-flat" type="submit" name="profile-upload-action">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <? } ?>
 				</div>
 				<div class="profile-intro col l8 m8 s12 ">
 					<h1 class="profile-name grey lighten-4 z-depth-1"><?= $profile->fName . ' ' . $profile->sName ?></h1>
@@ -113,9 +250,31 @@ else{
                 <div class="col l4 s12 ">
 					<div class="card profile-info">
 						<div class="card-content">
-							<div>Occupation: <?= (!empty($profile->occupation)) ? $profile->occupation : "Undecided" ?></div>
+							<div>Occupation:
+                                <?php if($editMode){ ?>
+                                <div class="input-field inline">
+                                    <input id="occupation-edit" type="text" class="validate" value="<?=(!empty($profile->occupation)) ? $profile->occupation : "Undecided"?>">
+                                    <a class="btn waves-effect waves-light save-occupation right">
+                                        <i class="material-icons">check</i>
+                                    </a>
+                                </div>
+                                <?php } else { 
+                                    echo (!empty($profile->occupation)) ? $profile->occupation : "Undecided";
+                                } ?>
+                            </div>
 							<div>Age: <?= (isset($_SESSION['userid'])) ? $age : "Login to see." ?></div>
-							<div>Location: <?= (!empty($profile->location)) ? $profile->location : "Earth...probably." ?></div>
+							<div>Location: 
+                                <?php if($editMode){ ?>
+                                <div class="input-field inline">
+                                    <input id="location-edit" type="text" class="validate" value="<?=(!empty($profile->location)) ? $profile->location : "Earth...probably?"?>">
+                                    <a class="btn waves-effect waves-light save-location right">
+                                        <i class="material-icons">check</i>
+                                    </a>
+                                </div>
+                                <?php } else { 
+                                    echo (!empty($profile->location)) ? $profile->location : "Earth...probably?";
+                                } ?>
+                            </div>
 							<div>Username: @<?= $profile->username ?></div>
 							<div>LinkedIn: <?php if(!empty($profile->linkedin) && isset($_SESSION['userid'])){ ?><a href="<?= $profile->linkedin ?>">View Profile</a><?php } else { echo "Login to see."; }?> </div>
 						</div>
@@ -131,7 +290,7 @@ else{
                          <textarea class="edit-description materialize-textarea" name="edit-description"><?= (!empty($profile->description)) ? $profile->description : "I am probably a real cool person, but I haven't written my description yet - d'oh!" ?></textarea>
                         <label for="edit-description">Description (long)</label>
                     </div>
-                    <a class="btn waves-effect waves-light save-description">
+                    <a class="btn waves-effect waves-light save-description right">
                         <i class="material-icons">check</i>
                     </a>  
                     <?php } else {?>
