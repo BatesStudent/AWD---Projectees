@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // initialise materializeCSS components
     $('select').formSelect();
   	$(".button-collapse").sidenav();
     $(".dropdown-trigger").dropdown();
@@ -8,6 +9,12 @@ $(document).ready(function() {
     $('.card-reveal').mouseleave(function(){
         $(this).find('.card-title').click();
     });
+    $('.fixed-action-btn').floatingActionButton();
+	$('.collapsible').collapsible();
+	$('.tooltipped').tooltip();
+    $('.character-counter').characterCounter();
+    $('.modal').modal();
+	$('.tabs').tabs();
     $('.birthdatepicker').datepicker({
         yearRange: [1,100], // Creates a dropdown of 100 years to control year,
         maxDate: new Date(),
@@ -29,29 +36,27 @@ $(document).ready(function() {
 		minDate: new Date(),
         firstDay: 1 // First day of week (0: Sunday, 1: Monday etc).        
     });
-	$('.fixed-action-btn').floatingActionButton();
-	$('.collapsible').collapsible();
-	$('.tooltipped').tooltip();
-    $('.character-counter').characterCounter();
-    $('.modal').modal();
-	$('.tabs').tabs();
-	 // show the right sidenav tab as active
-	 $('li[data-active-title="'+document.title.split(" | ")[1] +'"]').addClass("active");
+	
+    // show the right sidenav tab as active by getting the end of the page title and comparing it to a data attribute on the nav item
+    $('li[data-active-title="'+document.title.split(" | ")[1] +'"]').addClass("active");
 	 
+    // hide the notifications badge on click of the notification dropdown
 	 $('#notificationDrop').on('click',function(){
 		$('#notificationBadge').css('display','none');
 	 });
+    // if a notification is clicked, mark it as read
 	 $('.n').on('click',function(){
 		 var n = $(this);
 		 $.ajax({
 			url : "includes/notificationsRead.php",
 			method : "post",
-			 data : {nid : n.data('nid')}
+            data : {nid : n.data('nid')}
 		}).done(function(data){
 			n.addClass('read');
 		});
 	 });
 	 
+    // provide feedback to a registering user if the username they want is already taken
 	 $('#uName').on('change',function(){
 		 var username = $(this).val();
 		 $(this).parent('.input-field').find('.input-alert').remove();
@@ -141,16 +146,16 @@ $(document).ready(function() {
          });
      }
     
-    $('.choose-unplash-pic').on('click',getUnsplash);
-    
-    function getUnsplash(){        
+    $('.choose-unplash-pic').on('click',getUnsplash($('.unsplash-images')));
+    // NEED TO TEST THIS ADAM TODO
+    function getUnsplash(targetElement){        
         $.ajax({
              url: 'https://api.unsplash.com/search/photos/?client_id=d31a456d88de5f6374cf15d300ac5de55c1afa4c5d84d9dfca0f3839b8886299&query=adventure',
              method: 'GET'
          }).done(function(data){
             var results = data.results;
             $.each(results, function(index, image){                
-                $('.unsplash-images').append("<li><img class='update-cover-photo' data-url='"+image.urls.regular+"' src='"+image.urls.regular+"' alt='unsplash-image'></li>");
+                $(targetElement).append("<li><img class='update-cover-photo' data-url='"+image.urls.regular+"' src='"+image.urls.regular+"' alt='unsplash-image'></li>");
             });
             $('.update-cover-photo').on('click',function(){
                 var src = $(this).attr('data-url');

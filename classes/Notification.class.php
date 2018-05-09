@@ -73,7 +73,17 @@ class Notification{
 		$this->readState = 1;
 		$stmt = $this->db->prepare("UPDATE Notifications SET readState = 1 WHERE id = ?");
 		$stmt->bindParam(1, $this->nid);
-		$stmt->execute();
+        try{
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        catch(Exception $e){
+            return false;
+        }
 		
 	}
 	

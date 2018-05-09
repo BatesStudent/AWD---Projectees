@@ -63,10 +63,11 @@
 		public function updatePassword($password, $newPassword){
 			if($this->verifyPassword($password)){
 				// prepare statement
-				$stmt = $this->db->prepare("UPDATE Users SET password = ? WHERE id = $this->uid;");
+				$stmt = $this->db->prepare("UPDATE Users SET password = ? WHERE id = ?;");
 				// bind params
 				$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 				$stmt->bindParam(1, $newPassword);
+                $stmt->bindParam(2, $this->uid);
 				try{
 					// attempt to execute the sql statement
 					$stmt->execute();
@@ -154,8 +155,9 @@
 		}
         
         public function setLinkedIn($new){
-            $stmt = $this->db->prepare("UPDATE Users SET linkedin = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET linkedin = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -166,8 +168,9 @@
         }
         
         public function setDOB($new){
-            $stmt = $this->db->prepare("UPDATE Users SET dateOfBirth = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET dateOfBirth = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -177,8 +180,9 @@
             }
         }
         public function setLocation($new){
-            $stmt = $this->db->prepare("UPDATE Users SET location = ? WHERE id = $this->uid");
+            $stmt = $this->db->prepare("UPDATE Users SET location = ? WHERE id = ?");
             $stmt->bindParam(1, $new);
+            $stmt->bindParam(2, $this->uid);
             try{
                 $stmt->execute();
                 return true;
@@ -314,8 +318,16 @@
 		public function deleteAccount($password, $confirmation){
 			if($confirmation === "DELETE" && $this->verifyPassword($password)){				
 				try{
-					$this->db->query("DELETE FROM Users WHERE id = ".$this->uid.";");
-					$this->logOut();
+					$stmt = $this->db->prepare("DELETE FROM Users WHERE id = ?;");
+                    $stmt->bindParam(1, $this->uid);
+                    $stmt->execute();
+                    if($stmt->rowCount() > 0){
+					   // check an account was actually updated
+					   return true;
+                    }
+                    else{
+                        return false;
+                    }
 					return true;
 				}
 				catch(Exception $e){
@@ -325,33 +337,40 @@
 			else{
 				return false;
 			}
-
 		}
 				
 	 	// function for checking password of user
 		private function verifyPassword($password){
-			$stmt = $this->db->query("SELECT password FROM Users WHERE id = $this->uid;");			
-			while ($row = $stmt->fetch(PDO::FETCH_OBJ)){ 
-				if(password_verify($password, $row->password)){
-					return true;
-				}
-				else{
-					return false;
-				}
-			}
+			$stmt = $this->db->prepare("SELECT password FROM Users WHERE id = ? LIMIT 1");
+            $stmt->bindParam(1, $this->uid);
+            try{
+                $stmt->execute();
+                while ($row = $stmt->fetch(PDO::FETCH_OBJ)){ 
+                    if(password_verify($password, $row->password)){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            } catch(Exception $e){
+                return false;
+            }			
 		}
 		
 		// function to check if a username already exists
 		public function checkUsername($username){
 			$username = trim($username);
-			$stmt = $this->db->prepare("SELECT id FROM Users WHERE username = ?");
+			$stmt = $this->db->prepare("SELECT id FROM Users WHERE username = ? LIMIT 1");
 			$stmt->bindParam(1, $username);
 			try{
 				$stmt->execute();
 				if($stmt->rowCount() > 0){
+                    // if a user already exists with that username, the call is failed
 					return false;
 				}
 				else{
+                    // if the username is available, return true
 					return true;
 				}				
 			}
@@ -405,7 +424,7 @@
                                     return true;
                                 }
                                 catch (Exception $e){
-                                    return true;
+                                    return false;
                                 }
                             }
                             catch (Exception $e){
@@ -448,8 +467,6 @@
 				return false;
 			}
 		}
-		
-		
 		
 	}
 

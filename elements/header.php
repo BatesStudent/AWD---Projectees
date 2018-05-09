@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Projectees |
-		<?= $getTitle?>
+		<?= ucwords($getTitle)?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' href='materialize-src/sass/materialize.css'>
@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="scss/style.css">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	<script src='materialize-src/js/bin/materialize.min.js'></script>
-	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One&Roboto:300,400" rel="stylesheet">
 </head>
 
 <?php if(!isset($_SESSION['userid'])){
@@ -107,7 +107,6 @@
 						</a>
 						<a href="index.php?p=userProfile&username=<?= $user->uName?>"><span class="white-text name"><?= $user->name; ?></span></a>
 						<a href="index.php?p=userProfile&username=<?= $user->uName?>"><span class="white-text">@<?= $user->uName; ?></span></a>
-						<a href="#!email"><span class="white-text email"><?=$user->email?></span></a>
 					</div>
 				</li>
 				<li class="no-padding">
@@ -116,9 +115,9 @@
 							<a class="collapsible-header ">Projects<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li data-active-title="searchProjects"><a href="index.php?p=search">Search Projects</a></li>
+									<li data-active-title="searchProjects"><a href="index.php?p=search&target=p">Search Projects</a></li>
 									<li data-active-title="userProjects"><a href="#!">My Projects</a></li>
-									<li data-active-title="newProject"><a href="#!">Create New Project<i class="material-icons right">add</i></a></li>
+									<li data-active-title="newProject"><a href="index.php?p=newProject">Create New Project<i class="material-icons right">add</i></a></li>
 								</ul>
 							</div>
 						</li>
@@ -126,7 +125,7 @@
 							<a class="collapsible-header">Users<i class="material-icons right">arrow_drop_down</i></a>
 							<div class="collapsible-body">
 								<ul>
-									<li data-active-title="searchUsers"><a href="#">Search Users</a></li>
+									<li data-active-title="searchUsers"><a href="index.php?p=search&target=u">Search Users</a></li>
 									<li data-active-title="userProfile"><a href="index.php?p=userProfile&username=<?= $user->uName?>">My Profile</a></li>
 									<li><a href="index.php?p=logout">Logout</a></li>
 								</ul>

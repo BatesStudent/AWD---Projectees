@@ -26,7 +26,7 @@ if(isset($_POST['action'])){
 		<div>
 			<div class="row introw ">
 				<h1>Login to Projectees...</h1>
-				<p>Not got an account yet? What are you waiting for! <a href="index.php?p=register" class="light-blue-text">Register here.</a></p>
+				<p>Not got an account yet? What are you waiting for!? <a href="index.php?p=register" class="light-blue-text">Register here.</a></p>
 			</div>
 			<div class="row center-align">
 				<form class="col l6 s12 white card offset-l3" action="index.php?p=login" method="post">
