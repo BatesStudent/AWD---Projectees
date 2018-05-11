@@ -10,9 +10,7 @@
 				<h3>More info</h3>
 				<ul>
 					<li><a href="index.php?p=about" class="grey-text text-lighten-2">About Projectees</a></li>
-					<li><a href="index.php?p=faq" class="grey-text text-lighten-2">Frequently Asked Questions</a></li>
 					<li><a href="index.php?p=terms" class="grey-text text-lighten-2">Terms &amp; Conditions</a></li>
-					<li><a href="index.php?p=terms#privacy" class="grey-text text-lighten-2">Privacy Policy</a></li>
 				</ul>
 			</div>
 			<div class="col l4 m6 s12 left-align">
@@ -32,7 +30,7 @@
 		</div>
 	</div>
 </footer>
-<script src='js/main.js'></script>
+<script src='js/main.min.js'></script>
 
 </body>
 

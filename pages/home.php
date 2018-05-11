@@ -163,7 +163,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div id="user-card-display" class="col m6 l6 s12">
+				<div id="user-card-display" class="col m6 l6 s12 hide-on-small-only">
 					<div class="card user-card center-align">
 						<div class="cover-image grey lighten-3">
 							<img src="img/smallbg.jpg" alt="default background">

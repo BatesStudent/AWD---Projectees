@@ -5,8 +5,7 @@ if(!isset($_SESSION['userid'])){
 }
 
     $user = new User($_SESSION['userid']);
-    $profileDetails = $user->getProfile();
-
+    $profileDetails = $user->getProfile(true);
     if($_SERVER['REQUEST_METHOD'] == 'POST'){        
         if(isset($_POST['location']) && !empty($_POST['location'])){
             $user->setLocation($_POST['location']);
@@ -105,7 +104,7 @@ if(!isset($_SESSION['userid'])){
 
             // Did we hit an error?
             if ($error) {
-                ?><script>Materialize.toast('<?=$error?>',4000);</script><?php
+                ?><script>M.toast({html:'<?=$error?>'});</script><?php
             } else {
                 //Save file
                 if (move_uploaded_file($_FILES['coverPicture']["tmp_name"], $target_file)) {
@@ -117,7 +116,7 @@ if(!isset($_SESSION['userid'])){
             }
         }
         $user = new User($_SESSION['userid']);
-        $profileDetails = $user->getProfile();
+        $profileDetails = $user->getProfile(true);
     }
 ?>
 <section>
@@ -126,59 +125,75 @@ if(!isset($_SESSION['userid'])){
             <div class="row">
             <h1>Let's finish that profile...</h1>
             <p>Don't worry, you don't have to fill in all these fields (typing fatigue is a real thing, you know) - just fill in as many as you can/want to. It's for your benefit as it means other people will know what you're all about!</p>
-            <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->profilePic)){ echo "amber lighten-5"; } ?>">
-                <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled'; }?> >
-                    <span>Profile Picture</span>
-                    <input type="file" name="profilePicture" id="profilePicture" <?php if(isset($profileDetails) && !empty($profileDetails->profilePic)){ echo 'disabled style="opacity:0.2"'; } ?>>
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
-                </div>
-            </div>
-            <div class="file-field input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->coverPhoto)){ echo "amber lighten-5"; } ?>">
-                <div class="btn" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled'; }?> >
+			<?php if(isset($profileDetails) && empty($profileDetails->profilePic)){?>
+				<div class="file-field input-field col l6 s12">
+					<div class="btn" >
+						<span>Profile Picture</span>
+						<input type="file" name="profilePicture" id="profilePicture">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+			<?php }
+            if(isset($profileDetails) && empty($profileDetails->coverPhoto)){ ?>
+            <div class="file-field input-field col l6 s12">
+                <div class="btn">
                     <span>Cover Picture</span>
-                    <input type="file" name="coverPicture" id="coverPicture" <?php if(isset($profileDetails) && !empty($profileDetails->coverPhoto)){ echo 'disabled style="opacity:0.2"'; } ?>>
+                    <input type="file" name="coverPicture" id="coverPicture">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
             </div>
+			<?php } ?>
         </div>
         <div class="row">
-            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->location)){ echo "amber lighten-5"; } ?>">
-                <input name="location" type="text" class="validate " placeholder="e.g. London, UK" <?php if(isset($profileDetails) && !empty($profileDetails->location)){ ?> value="<?php echo $profileDetails->location ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+			<?php if(isset($profileDetails) && empty($profileDetails->location)){ ?>
+            <div class="input-field col l6 s12 ">
+                <input name="location" type="text" class="validate " placeholder="e.g. London, UK">
                 <label for="location">Location <small>(Be as specific as you like)</small></label>
             </div>
-            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->dateOfBirth)){ echo "amber lighten-5"; } ?>">
-                <input name="dob" type="text" class="birthdatepicker" placeholder="1996-04-22" <?php if(isset($profileDetails) && !empty($profileDetails->dateOfBirth)){ ?> value="<?php echo $profileDetails->dateOfBirth ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
-                <label for="dob">Date of Birth</label>
+			<?php } 
+			if(isset($profileDetails) && empty($profileDetails->dateOfBirth)){
+			?>
+            <div class="input-field col l6 s12">
+                <input name="dob" type="text" class="birthdatepicker" placeholder="1996-04-22">
+                <label for="dob">Date of Birth</label>				
             </div>
+			<?php } ?>
         </div>
         
         <div class="row">
-            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->occupation)){ echo "amber lighten-5"; } ?>">
-                <input name="role" type="text" class="validate" placeholder="e.g. Web Developer, Violinist, Gardener, Olympic Gymnast" <?php if(isset($profileDetails) && !empty($profileDetails->occupation)){ ?> value="<?php echo $profileDetails->occupation ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+			<?php if(isset($profileDetails) && empty($profileDetails->occupation)){ ?>
+            <div class="input-field col l6 s12">
+                <input name="role" type="text" class="validate" placeholder="e.g. Web Developer, Violinist, Gardener, Olympic Gymnast">
                 <label for="role">Occupation <small>(Don't have one? That's okay, what's your dream job?)</small></label>
             </div>
-            <div class="input-field col l6 s12 <?php if(isset($profileDetails) && empty($profileDetails->linkedin)){ echo "amber lighten-5"; } ?>">
-                <input name="linkedin" type="text" class="validate" placeholder="https://www.linkedin.com/in/YOUR_LINK" <?php if(isset($profileDetails) && !empty($profileDetails->linkedin)){ ?> value="<?php echo $profileDetails->linkedin ?>" <?php echo 'disabled style="opacity:0.2"'; } ?>>
+			<?php }
+			if(isset($profileDetails) && empty($profileDetails->linkedin)){
+			?>
+            <div class="input-field col l6 s12">
+                <input name="linkedin" type="text" class="validate" placeholder="https://www.linkedin.com/in/YOUR_LINK">
                 <label for="linkedin">LinkedIn Profile</label>
-            </div>
+            </div>			
+			<?php } ?>
         </div>
-        <div class="row <?php if(isset($profileDetails) && empty($profileDetails->intro)){ echo "amber lighten-5"; } ?>">
-
+		<?php if(isset($profileDetails) && empty($profileDetails->intro)){ ?>
+        <div class="row">
             <div class="input-field col s12">
-                <textarea name="quote" class="materialize-textarea character-counter" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" <?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo 'disabled style="opacity:0.2"'; }?> ><?php if(isset($profileDetails) && !empty($profileDetails->intro)){ echo $profileDetails->intro;  } ?></textarea>
+                <textarea name="quote" class="materialize-textarea character-counter" data-length="140" placeholder="This will be the first thing people read on your profile page! Make it snappy!" ></textarea>
                 <label for="quote">Introductory quote</label>
             </div>
-        </div>
-        <div class="row <?php if(isset($profileDetails) && empty($profileDetails->description)){ echo "amber lighten-5"; } ?>">
+        </div>	
+		<?php } if(isset($profileDetails) && empty($profileDetails->description)){ ?>
+        <div class="row">
             <div class="input-field col s12 ">
-                <textarea name="pd" class="materialize-textarea " placeholder="You can go into as much or as little detail as you want here! Who are you, what makes you interesting, what are you looking for in a project?" <?php if(isset($profileDetails) && !empty($profileDetails->description)){ echo 'disabled style="opacity:0.2"'; }?>><?php if(isset($profileDetails) && !empty($profileDetails->description)){  echo $profileDetails->description;  } ?></textarea>
+                <textarea name="pd" class="materialize-textarea " placeholder="You can go into as much or as little detail as you want here! Who are you, what makes you interesting, what are you looking for in a project?"></textarea>
                 <label for="pd">Personal Description</label>
             </div>
         </div>
+		<?php } ?>
         <div class="row">
             <div class="col s12">
               Add a skill:

@@ -5,6 +5,6 @@ spl_autoload_register(function ($class_name) {
 session_start();
 if(isset($_SESSION['userid']) && isset($_POST['nid'])){
 	$notification = new Notification($_POST['nid']);
-	$notification->markRead();
+	var_dump($notification->markRead());
 }
 ?>

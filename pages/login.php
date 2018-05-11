@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['activated'])){
-	echo "<script>Materialize.toast('Account successfully activated, you may now log in!',5000);</script>";
+	echo "<script>M.toast({html:'Account successfully activated, you may now log in!'});</script>";
 }
 if(isset($_POST['action'])){
     if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && !empty(trim($_POST['password']))){
@@ -9,15 +9,15 @@ if(isset($_POST['action'])){
         $loginSuccess = $user->login($_POST['email'], trim($_POST['password']));
         if($loginSuccess === true){
             $_SESSION['userid'] = $user->uid;
-            echo "<script>window.location.assign('index.php?p=searchProjects');</script>";
+            echo "<script>window.location.assign('index.php?p=search');</script>";
             exit;
         }
         else{
-            echo "<script>Materialize.toast('".$loginSuccess."',4000);</script>";
+            echo "<script>M.toast({html:'".$loginSuccess."'});</script>";
         }
     }
     else{
-        echo "<script>Materialize.toast('Please fill in all required fields correctly!',4000);</script>";
+        echo "<script>M.toast({html:'Please fill in all required fields correctly!'});</script>";
     }
 }
 ?>

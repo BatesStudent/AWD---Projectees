@@ -8,24 +8,24 @@ if(isset($_POST['register-action'])){
 			
 				if($user->register($_POST['email'], trim($_POST['password']), trim($_POST['fName']), trim($_POST['lName']),trim($_POST['uName'])) == true){
 					// inform the user they must verify their account before logging in and present login page
-					echo "<script>Materialize.toast('Successfully registered, you must verify your account before you can log in (check your email for a link)!',10000);</script>";
+					echo "<script>M.toast({html:'Successfully registered, you must verify your account before you can log in (check your email for a link)!'},10000);</script>";
 					require_once "pages/login.php";
 					return;
 				}
 				else{
-					echo "<script>Materialize.toast('Eek, we were unable to create your account! Maybe you already have an account with that email address?',4000);</script>";
+					echo "<script>M.toast({html:'Eek, we were unable to create your account! Maybe you already have an account with that email address?'});</script>";
 				}
 			}
 			else{
-				echo "<script>Materialize.toast('That username is already taken, sorry!',4000);</script>";
+				echo "<script>M.toast({html:'That username is already taken, sorry!'});</script>";
 			}
         }
         else{
-            echo "<script>Materialize.toast('Passwords do not match!',4000);</script>";
+            echo "<script>M.toast({html:'Passwords do not match!'});</script>";
         }
     }
     else{
-        echo "<script>Materialize.toast('Please fill in all required fields correctly!',4000);</script>";
+        echo "<script>M.toast({html:'Please fill in all required fields correctly!'});</script>";
     }
 }
 ?>

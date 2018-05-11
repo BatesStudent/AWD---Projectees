@@ -2,6 +2,7 @@ $greyText: #585858;
 
 body {
 	color: $greyText;
+	overflow-x: hidden;
 }
 nav {
 	z-index: 5;
@@ -21,16 +22,37 @@ nav {
 			background-color: grey;
 		}
 		.search-form {
-			max-width: 500px;
+			max-width: 450px;
 			width: 100%;
 			position: absolute;
-			left: 50%;
+			left: calc(50% + 150px);
 			transform: translateX(-50%);
 			display: inline-block;
 		}
 	}
 }
-
+.about-faq{
+	li{
+		h2{
+			margin: 20px 0 0px 10px;
+    		font-size: 3rem;
+		}
+	}
+}
+ul#notificationlist{
+	max-width: 90vw;
+    right: 5vw;
+    left: auto !important;
+    height: auto !important;
+    max-height: 80vh;
+    width: 450px !important;
+	li{
+		padding: 14px 16px;
+		a{
+			padding: 0;
+		}
+	}
+}
 .input-field {
 	label {
 		transform: translateY(0);
@@ -57,7 +79,7 @@ nav {
 		font-size: 60px;
 	}
 	h2 {
-		margin: 50px 0 40px;
+		margin: 50px 0 30px;
 	}
 	p {
 		max-width: 590px;
@@ -86,7 +108,10 @@ nav {
 		transform: translateY(-50%);
 	}
 }
-
+p.justify-left{
+	text-align: justify;
+	text-align-last: left;
+}
 .circle-bottom-section {
 	padding-bottom: 50px;
 }
@@ -114,7 +139,6 @@ section {
 	padding: 75px 10px;
 	position: relative;
 }
-
 
 #user-card-display {
 	position: relative;
@@ -176,7 +200,7 @@ section {
 	}
 	.card-action {
 		a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-			margin-right: 0px;
+			margin-right: 0px !important;
 		}
 	}
 }
@@ -199,11 +223,14 @@ section {
 	}
 	.project-name {
 		font-family: "Poiret One";
-		font-size: 30px;
+		font-size: 26px;
+		line-height: 1.1;
 	}
 	.cover-image {
 		height: 150px;
-		position: relative;
+		position: relative;		
+		background-image: url(../img/defaultbg.jpg);
+		background-size: cover;
 		img {
 			width: 45px;
 			height: 45px;
@@ -284,7 +311,7 @@ footer {
 	background-image: url(../img/defaultbg.jpg);
 	background-size: cover;
 	background-position: center;
-	height: 40vh;
+	height: 50vh;
 	min-height: 300px !important;
 	margin-left: -10px !important;
     margin-right: -10px !important;
@@ -297,6 +324,25 @@ footer {
 }
 .select-prefix{
 	left: 1rem;
+}
+.project-head{
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	min-height: unset;
+}
+.project-page{
+    padding-top: 0 !important;	
+	h1.project-title{
+		margin: -75px auto 30px -10px;
+		display: inline-block;
+		font-size: 80px;
+		padding: 10px 10px 20px;
+		small{
+			font-size: 28px;
+			line-height: 1;
+			margin-left: 20px;
+		}
+	}
 }
 .profile-head {
     padding-top: 0 !important;
@@ -373,6 +419,7 @@ footer {
 			min-width: 100%;
 			min-height: 100%;
 			opacity: 0.4;
+			object-fit: cover;
 		}
 	}
 }
@@ -382,9 +429,7 @@ footer {
 }
 
 
-
-
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1080px){
 	.introw{ h1{ font-size:40px;}}
 	h1{ font-size: 38px;}
 	h2{font-size: 34px;}
@@ -392,17 +437,16 @@ footer {
 		min-width: initial;
 		.project-name{
 			font-size: 24px;
-		}
-		.card-reveal{
-			opacity: 0;
-			z-index: -1 !important;
+			text-align: left;
+			margin-left: 0 !important;
+			text-align-last: left !important;
 		}
 	}
 	nav{
 		.nav-wrapper{
-			padding-left: 0;
 			.search-form{
 				transform: translateY(100%) translateX(-50%);
+				max-width: calc(100% - 300px);
 			}
 		}
 	}
@@ -419,61 +463,102 @@ footer {
 	.results{
 		.user-card, .project-card{
 			margin: 10px auto;
-			max-width:100%;
-			min-width: 100%;
 		}
 	}
 	.profile-head {
 		margin-top: 50px;
-
-	.profile-user {
-		position: relative;
-		margin-top: 0;
-		transform: translateY(0%);
-		left: 0;
-		.row{
-			width: initial;
-		}
-		.profile-pic {
-			float: none; 
-			margin-right: auto;
-			img {
-				width: 100%;
-				max-width: 250px;
-				border-radius: 50%;
-				margin: auto;
+		padding-bottom: 20px;
+		.profile-user {
+			position: relative;
+			margin-top: 0;
+			left: 0;
+			transform: translateY(-100px);
+			.row{
+				width: initial;
 			}
-		}
-		.profile-intro {
-			.profile-name {
-				padding: 20px;
-				margin: 10px auto 10px auto;
-				font-size: 38px
+			.profile-pic {
+				float: none; 
+				margin-right: auto;
+				img {
+					width: 100%;
+					max-width: 250px;
+					border-radius: 50%;
+					margin: auto;
+				}
 			}
-			.profile-quote {
-				margin-left: 0;
+			.profile-intro {
+				.profile-name {
+					padding: 20px;
+					margin: 10px auto 10px auto;
+					font-size: 38px
+				}
+				.profile-quote {
+					margin-left: 0;
+					text-align: justify;
+					text-align-last: center;
+				}
 			}
 		}
 	}
-}
 	.profile-page {
-	padding-top: 0px;
-	.profile-info {
-		max-width: 300px;
-		margin: 0 auto 15px;
-		h2 {
-			font-size: 30px;
+		padding-top: 0px;
+		transform: translateY(-100px);
+		margin-top: 0;
+		margin-bottom: -100px;
+		.profile-info {
+			max-width: 300px;
+			margin: 0 auto 15px;
+			h2 {
+				font-size: 30px;
+			}
 		}
-	}
-	.profile-detail {
-		p {
-			margin-left: 0;
-		}
-		h2:first-child {
-			margin-top: 5px;
+		.profile-detail {
+			p {
+				margin-left: auto;
+				margin-right: auto;
+				text-align-last: center;
+			}
+			h2:first-child {
+				margin-top: 5px;
+			}
+			h2{
+				text-align: center;
+			}
+			.skill-chips{
+				text-align: center;
+			}
 		}
 	}
 }
-
-
+@media only screen and (max-width: 992px){
+	nav{
+		.nav-wrapper{
+			padding-left: 0;
+			.search-form{				
+				max-width: 100%;
+				left: 0;
+				transform: translateY(100%);
+			}
+			.brand-logo{
+				padding: 0;
+			}
+		}
+	}
+	
+}
+@media only screen and (max-width: 480px){
+	.results{
+		.project-card{
+			min-width: 100%;		
+			.project-name{
+				font-size: 24px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				small{
+					display: none;
+				}
+			}
+		}
+	}
 }

@@ -3,10 +3,11 @@
 	class User{
 
 		public $name;
-		public $uName;
+		public $username;
 		public $profilePic;
 		public $coverPhoto;
 		public $uid;
+		public $occupation;
 		public $email;
 		protected $db;
 		
@@ -17,7 +18,7 @@
 			// if the ID is not false, we want to create a User using the provided ID.
 			// In doing so, we only get publicly available information (i.e. this does not log the user in).
 			if($id != false){
-				$stmt = $this->db->prepare("SELECT email, fName, username, profilePic, coverPhoto FROM Users WHERE id = ? LIMIT 1;");
+				$stmt = $this->db->prepare("SELECT email, fName, username, profilePic, coverPhoto, occupation FROM Users WHERE id = ? LIMIT 1;");
 				// bind params
 				$stmt->bindParam(1, $id);
 				try{
@@ -27,7 +28,8 @@
 						$this->uid = $id;
 						$this->name = $row->fName;
 						$this->email = $row->email;
-						$this->uName = $row->username;
+						$this->username = $row->username;
+						$this->occupation = $row->occupation;
 						$this->profilePic = $row->profilePic;
 						$this->coverPhoto = $row->coverPhoto;
 					}
@@ -282,8 +284,7 @@
 				$stmt->execute();
 				// check account was created and send activation email
 				// a common reason for the account not creating is duplicate email addresses (only 1 account per email is allowed)
-				if($stmt->rowCount() > 0){
-					
+				if($stmt->rowCount() > 0){					
 					mail($email, "Welcome to Projectees!","Hi, $uName!<br><br>Thank you for registering an account with Projectees, we hope you enjoy using the platform and mostly importantly <strong>get stuff done</strong>!<br><br>Please click the link to verify your account, allowing you to log in:<br><a href='http://".$_SERVER['HTTP_HOST']."/projectees/index.php?p=activateAccount&c=$activationCode' target='_blank'>Verify</a><br><br>Thanks, we look forward to seeing what you create - Projectees","From: noreply@projectees.com\r\nMIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8");
 					// create welcome notification 
 					new Notification(false, $this->db->lastInsertId(),"Thank you for joining the Projectees Community!");					
@@ -315,10 +316,10 @@
 			}
 		}
 		
-		public function deleteAccount($password, $confirmation){
-			if($confirmation === "DELETE" && $this->verifyPassword($password)){				
+		public function deleteAccount($password){
+			if($this->verifyPassword($password)){				
 				try{
-					$stmt = $this->db->prepare("DELETE FROM Users WHERE id = ?;");
+					$stmt = $this->db->prepare("DELETE FROM Users WHERE id = ? LIMIT 1");
                     $stmt->bindParam(1, $this->uid);
                     $stmt->execute();
                     if($stmt->rowCount() > 0){
@@ -328,7 +329,6 @@
                     else{
                         return false;
                     }
-					return true;
 				}
 				catch(Exception $e){
 					return false;
@@ -465,6 +465,17 @@
 				}
 			} catch(Exception $e) {
 				return false;
+			}
+		}
+		
+		public function getProjects(){
+			$stmt = $this->db->prepare("SELECT id FROM Projects WHERE ownerID = ?");
+			$stmt->bindParam(1, $this->uid);
+			try{
+				$stmt->execute();
+				return $stmt->fetchAll(PDO::FETCH_OBJ);
+			} catch(Exception $e) {
+				return $e;
 			}
 		}
 		

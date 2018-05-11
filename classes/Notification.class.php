@@ -37,7 +37,7 @@ class Notification{
 		}
 		else if($nid == false && $userid != false && $text == false){
 			// we are retrieving all notifications for a given user
-			$stmt = $this->db->prepare("SELECT * FROM Notifications WHERE userid = ?");
+			$stmt = $this->db->prepare("SELECT * FROM Notifications WHERE userid = ? AND readState = 0");
 			$stmt->bindParam(1, $userid);			
 			try{
 				$stmt->execute();
@@ -70,7 +70,6 @@ class Notification{
 	}
 	
 	public function markRead(){
-		$this->readState = 1;
 		$stmt = $this->db->prepare("UPDATE Notifications SET readState = 1 WHERE id = ?");
 		$stmt->bindParam(1, $this->nid);
         try{
@@ -83,8 +82,7 @@ class Notification{
         }
         catch(Exception $e){
             return false;
-        }
-		
+        }		
 	}
 	
 }
