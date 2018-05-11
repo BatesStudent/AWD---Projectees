@@ -1,1 +1,422 @@
-.full-height,section{min-height:50vh}.cover-photo,.project-card .cover-image{background-image:url(../img/defaultbg.jpg);background-size:cover}body{color:#585858;overflow-x:hidden}nav{z-index:5;position:relative}nav .nav-wrapper{padding:0 10px 0 310px}nav .nav-wrapper .brand-logo{height:100%;padding:10px}nav .nav-wrapper .brand-logo img{height:100%}nav .nav-wrapper .btn,nav .nav-wrapper .btn-large{background-color:grey}nav .nav-wrapper .search-form{max-width:450px;width:100%;position:absolute;left:calc(50% + 150px);transform:translateX(-50%);display:inline-block}.about-faq li h2{margin:20px 0 0 10px;font-size:3rem}ul#notificationlist{max-width:90vw;right:5vw;left:auto!important;height:auto!important;max-height:80vh;width:450px!important}ul#notificationlist li{padding:14px 16px}ul#notificationlist li a{padding:0}.input-field label{transform:translateY(0);-webkit-transform:translateY(0)}.btn.save-quote{margin:0 auto 0 0}.switch label input[type=checkbox]:checked+.lever:after{background-color:inherit}.container h1,.container h2,.container h3,.container h4{font-family:'Poiret One'}.container h1{margin:50px 0;line-height:100%;font-size:60px}.container h2{margin:50px 0 30px}.container p{max-width:590px}.container .row{margin-top:30px}.center-align p{margin-left:auto;margin-right:auto}.right-align p{margin-left:auto;margin-right:0}.full-height .centered-content{position:relative;top:50%;transform:translateY(-50%)}p.justify-left{text-align:justify;text-align-last:left}.circle-bottom-section{padding-bottom:50px}.circle-top-section{padding-top:50px}.square-word,footer{padding:10px}.square-word{background-color:#fff;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);margin:auto}.introw h1{font-size:74px}section{padding:75px 10px;position:relative}#user-card-display{position:relative;min-height:350px}#user-card-display .project-card,#user-card-display .user-card{display:inline-block;position:absolute}#user-card-display .project-card:nth-child(2),#user-card-display .user-card:nth-child(2){z-index:3;transform:translateX(-50%);min-width:250px}#user-card-display .project-card:nth-child(odd),#user-card-display .user-card:nth-child(odd){transform:scale(.9);transform-origin:center;filter:blur(1px) grayscale(75%);min-width:225px;left:0}#user-card-display .project-card:nth-child(3),#user-card-display .user-card:nth-child(3){z-index:2;right:0;left:initial}.project-card,.user-card{max-width:300px;max-height:350px}.project-card img,.user-card img{width:100%;object-fit:cover;height:100%}.project-card .cover-image,.user-card .cover-image{width:100%;height:100px;overflow:hidden;background-position:center;background-size:cover;background-repeat:no-repeat}.project-card .avatar-image,.user-card .avatar-image{height:125px;overflow:hidden;width:125px;position:relative;border-radius:50%;transform:translateY(-50%);left:0;right:0;margin:auto auto -80px}.project-card .user-name,.user-card .user-name{font-family:'Poiret One';font-size:30px}.project-card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating),.user-card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){margin-right:0!important}#project-card-display{position:relative;display:flex;justify-content:center}.project-card{width:425px;max-width:425px;min-width:400px}.project-card .card-content .project-desc{font-size:12px}.project-card .project-name{font-family:"Poiret One";font-size:26px;line-height:1.1}.project-card .cover-image{height:150px;position:relative}.project-card .cover-image img{width:45px;height:45px;position:absolute;top:5px;left:5px;border-radius:50%}.project-card .card-reveal .card-title{cursor:default}.project-card .card-reveal .card-title small{font-size:12px;line-height:1;display:block;font-family:Roboto}.project-card .card-reveal .project-details{display:flex;justify-content:space-between}.project-card .card-reveal .project-details p{line-height:1}.left-align p{margin-left:0}.side-nav-body footer,.side-nav-body section{padding-left:300px}.side-nav-body section{padding-top:40px}.side-nav-body .container{width:90%}.results{display:flex;flex-direction:row;justify-content:space-between;flex-wrap:wrap}.results .project-card,.results .user-card{flex-basis:24%;min-width:250px}.results .project-card{flex-basis:33%;min-width:400px}.results .pagination{width:100%;text-align:center}.cover-photo{background-position:center;height:50vh;min-height:300px!important;margin-left:-10px!important;margin-right:-10px!important;width:calc(100% + 20px)!important}.cover-photo .cover-photo-buttons{text-align:right;padding-right:20px;padding-top:calc(40vh - 40px)}.project-head,.project-page{padding-top:0!important}.select-prefix{left:1rem}.project-head{padding-bottom:0!important;min-height:unset}.project-page h1.project-title{margin:-75px auto 30px -10px;display:inline-block;font-size:80px;padding:10px 10px 20px}.project-page h1.project-title small{font-size:28px;line-height:1;margin-left:20px}.profile-head{padding-top:0!important}.profile-head .profile-user{transform:translateY(-50%);display:flex;z-index:10}.profile-head .profile-user .row{width:100%;margin-top:0!important;margin-bottom:0}.profile-head .profile-user .profile-pic{text-align:center}.profile-head .profile-user .profile-pic .profile-pic-container{margin:auto;border-radius:50%;width:15vw;height:15vw;overflow:hidden;min-width:250px;min-height:250px}.profile-head .profile-user .profile-pic .profile-pic-container img{min-height:100%;width:100%;object-fit:cover}.profile-head .profile-user .profile-intro{display:flex;flex-direction:column;justify-content:center;height:100%}.profile-head .profile-user .profile-intro .profile-name{padding:20px;margin:auto auto 10px 0}.profile-head .profile-user .profile-intro .profile-quote{margin:10px auto auto 0}.profile-page{padding-top:0!important;margin-top:-24vh}.profile-page .profile-info{max-width:300px;margin:5px auto}.profile-page .profile-info h2{font-size:30px;margin:10px 0}.profile-page .profile-detail p{margin-left:0}.profile-page .profile-detail h2:first-child{margin-top:5px}.user-view img.circle{object-fit:cover}.user-view .background img{height:100%;min-width:100%;min-height:100%;opacity:.4;object-fit:cover}.removeSkill{line-height:inherit;cursor:pointer}@media only screen and (max-width:1080px){.introw h1{font-size:40px}h1{font-size:38px}h2{font-size:34px}.project-card{min-width:initial}.project-card .project-name{font-size:24px;text-align:left;margin-left:0!important;text-align-last:left!important}nav .nav-wrapper .search-form{transform:translateY(100%) translateX(-50%);max-width:calc(100% - 300px)}.project-card .user-name,.user-card .user-name{font-size:26px}.side-nav-body footer,.side-nav-body section{padding-left:10px}.results .project-card,.results .user-card{margin:10px auto}.profile-head{margin-top:50px;padding-bottom:20px}.profile-head .profile-user{position:relative;margin-top:0;left:0;transform:translateY(-100px)}.profile-head .profile-user .row{width:initial}.profile-head .profile-user .profile-pic{float:none;margin-right:auto}.profile-head .profile-user .profile-pic img{width:100%;max-width:250px;border-radius:50%;margin:auto}.profile-head .profile-user .profile-intro .profile-name{padding:20px;margin:10px auto;font-size:38px}.profile-head .profile-user .profile-intro .profile-quote{margin-left:0;text-align:justify;text-align-last:center}.profile-page{padding-top:0;transform:translateY(-100px);margin-top:0;margin-bottom:-100px}.profile-page .profile-info{max-width:300px;margin:0 auto 15px}.profile-page .profile-info h2{font-size:30px}.profile-page .profile-detail p{margin-left:auto;margin-right:auto;text-align-last:center}.profile-page .profile-detail h2:first-child{margin-top:5px}.profile-page .profile-detail .skill-chips,.profile-page .profile-detail h2{text-align:center}}@media only screen and (max-width:992px){nav .nav-wrapper{padding-left:0}nav .nav-wrapper .search-form{max-width:100%;left:0;transform:translateY(100%)}nav .nav-wrapper .brand-logo{padding:0}}@media only screen and (max-width:480px){.results .project-card{min-width:100%}.results .project-card .project-name{font-size:24px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.results .project-card .project-name small{display:none}}
+body {
+  color: #585858;
+  overflow-x: hidden; }
+
+nav {
+  z-index: 5;
+  position: relative; }
+  nav .nav-wrapper {
+    padding: 0 10px;
+    padding-left: 310px; }
+    nav .nav-wrapper .brand-logo {
+      height: 100%;
+      padding: 10px; }
+      nav .nav-wrapper .brand-logo img {
+        height: 100%; }
+    nav .nav-wrapper .search-form {
+      max-width: 450px;
+      width: 100%;
+      position: absolute;
+      left: calc(50% + 150px);
+      transform: translateX(-50%);
+      display: inline-block; }
+
+.about-faq li h2 {
+  margin: 20px 0 0px 10px;
+  font-size: 3rem; }
+
+ul#notificationlist {
+  max-width: 90vw;
+  right: 5vw;
+  left: auto !important;
+  height: auto !important;
+  max-height: 80vh;
+  width: 450px !important; }
+  ul#notificationlist li {
+    padding: 14px 16px; }
+    ul#notificationlist li a {
+      padding: 0; }
+
+.input-field label {
+  transform: translateY(0);
+  -webkit-transform: translateY(0); }
+
+.btn.save-quote {
+  margin: 0 auto 0 0; }
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: inherit; }
+
+.container h1,
+.container h2,
+.container h3,
+.container h4 {
+  font-family: 'Poiret One'; }
+.container h1 {
+  margin: 50px 0;
+  line-height: 100%;
+  font-size: 60px; }
+.container h2 {
+  margin: 50px 0 30px; }
+.container p {
+  max-width: 590px; }
+.container .row {
+  margin-top: 30px; }
+
+.center-align p {
+  margin-left: auto;
+  margin-right: auto; }
+
+.right-align p {
+  margin-left: auto;
+  margin-right: 0; }
+
+.full-height {
+  min-height: 50vh; }
+  .full-height .centered-content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
+
+p.justify-left {
+  text-align: justify;
+  text-align-last: left; }
+
+.circle-bottom-section {
+  padding-bottom: 50px; }
+
+.circle-top-section {
+  padding-top: 50px; }
+
+.square-word {
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  margin: auto; }
+
+.introw h1 {
+  font-size: 74px; }
+
+section {
+  min-height: 50vh;
+  padding: 75px 10px;
+  position: relative; }
+
+#user-card-display {
+  position: relative;
+  min-height: 350px; }
+  #user-card-display .user-card, #user-card-display .project-card {
+    display: inline-block;
+    position: absolute; }
+  #user-card-display .user-card:nth-child(2), #user-card-display .project-card:nth-child(2) {
+    z-index: 3;
+    transform: translateX(-50%);
+    min-width: 250px; }
+  #user-card-display .user-card:nth-child(odd), #user-card-display .project-card:nth-child(odd) {
+    transform: scale(0.9);
+    transform-origin: center;
+    filter: blur(1px) grayscale(75%);
+    min-width: 225px;
+    left: 0; }
+  #user-card-display .user-card:nth-child(3), #user-card-display .project-card:nth-child(3) {
+    z-index: 2;
+    right: 0;
+    left: initial; }
+
+.user-card, .project-card {
+  max-width: 300px;
+  max-height: 350px; }
+  .user-card img, .project-card img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%; }
+  .user-card .cover-image, .project-card .cover-image {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; }
+  .user-card .avatar-image, .project-card .avatar-image {
+    height: 125px;
+    overflow: hidden;
+    width: 125px;
+    position: relative;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: auto auto -80px; }
+  .user-card .user-name, .project-card .user-name {
+    font-family: 'Poiret One';
+    font-size: 30px; }
+  .user-card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating), .project-card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    margin-right: 0px !important; }
+
+#project-card-display {
+  position: relative;
+  display: flex;
+  justify-content: center; }
+
+.project-card {
+  width: 425px;
+  max-width: 425px;
+  min-width: 400px; }
+  .project-card .card-content .project-desc {
+    font-size: 12px; }
+  .project-card .project-name {
+    font-family: "Poiret One";
+    font-size: 26px;
+    line-height: 1.1; }
+  .project-card .cover-image {
+    height: 150px;
+    position: relative;
+    background-image: url(../img/defaultbg.jpg);
+    background-size: cover; }
+    .project-card .cover-image img {
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      border-radius: 50%; }
+  .project-card .card-reveal .card-title {
+    cursor: default; }
+    .project-card .card-reveal .card-title small {
+      font-size: 12px;
+      line-height: 1;
+      display: block;
+      font-family: 'Roboto'; }
+  .project-card .card-reveal .project-details {
+    display: flex;
+    justify-content: space-between; }
+    .project-card .card-reveal .project-details p {
+      line-height: 1; }
+
+.right-align p {
+  margin-right: 0; }
+
+.left-align p {
+  margin-left: 0; }
+
+footer {
+  padding: 10px; }
+
+.side-nav-body section,
+.side-nav-body footer {
+  padding-left: 300px; }
+.side-nav-body section {
+  padding-top: 40px; }
+.side-nav-body .container {
+  width: 90%; }
+
+.results {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .results .user-card, .results .project-card {
+    flex-basis: 24%;
+    min-width: 250px; }
+  .results .project-card {
+    flex-basis: 33%;
+    min-width: 400px; }
+  .results .pagination {
+    width: 100%;
+    text-align: center; }
+
+.cover-photo {
+  background-image: url(../img/defaultbg.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  min-height: 300px !important;
+  margin-left: -10px !important;
+  margin-right: -10px !important;
+  width: calc(100% + 20px) !important; }
+  .cover-photo .cover-photo-buttons {
+    text-align: right;
+    padding-right: 20px;
+    padding-top: calc(40vh - 40px); }
+
+.select-prefix {
+  left: 1rem; }
+
+.project-head {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: unset; }
+
+.project-page {
+  padding-top: 0 !important; }
+  .project-page h1.project-title {
+    margin: -75px auto 30px -10px;
+    display: inline-block;
+    font-size: 80px;
+    padding: 10px 10px 20px; }
+    .project-page h1.project-title small {
+      font-size: 28px;
+      line-height: 1;
+      margin-left: 20px; }
+
+.profile-head {
+  padding-top: 0 !important; }
+  .profile-head .profile-user {
+    transform: translateY(-50%);
+    display: flex;
+    z-index: 10; }
+    .profile-head .profile-user .row {
+      width: 100%;
+      margin-top: 0 !important;
+      margin-bottom: 0; }
+    .profile-head .profile-user .profile-pic {
+      text-align: center; }
+      .profile-head .profile-user .profile-pic .profile-pic-container {
+        margin: auto;
+        border-radius: 50%;
+        width: 15vw;
+        height: 15vw;
+        overflow: hidden;
+        min-width: 250px;
+        min-height: 250px; }
+        .profile-head .profile-user .profile-pic .profile-pic-container img {
+          min-height: 100%;
+          width: 100%;
+          object-fit: cover; }
+    .profile-head .profile-user .profile-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%; }
+      .profile-head .profile-user .profile-intro .profile-name {
+        padding: 20px;
+        margin: auto auto 10px 0; }
+      .profile-head .profile-user .profile-intro .profile-quote {
+        margin: 10px auto auto 0; }
+
+.profile-page {
+  padding-top: 0px !important;
+  margin-top: -24vh; }
+  .profile-page .profile-info {
+    max-width: 300px;
+    margin: 5px auto; }
+    .profile-page .profile-info h2 {
+      font-size: 30px;
+      margin: 10px 0; }
+  .profile-page .profile-detail p {
+    margin-left: 0; }
+  .profile-page .profile-detail h2:first-child {
+    margin-top: 5px; }
+
+.user-view img.circle {
+  object-fit: cover; }
+.user-view .background img {
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.4;
+  object-fit: cover; }
+
+.removeSkill {
+  line-height: inherit;
+  cursor: pointer; }
+
+@media only screen and (max-width: 1080px) {
+  .introw h1 {
+    font-size: 40px; }
+
+  h1 {
+    font-size: 38px; }
+
+  h2 {
+    font-size: 34px; }
+
+  .project-card {
+    min-width: initial; }
+    .project-card .project-name {
+      font-size: 24px;
+      text-align: left;
+      margin-left: 0 !important;
+      text-align-last: left !important; }
+
+  nav .nav-wrapper .search-form {
+    transform: translateY(100%) translateX(-50%);
+    max-width: calc(100% - 300px); }
+
+  .user-card .user-name, .project-card .user-name {
+    font-size: 26px; }
+
+  .side-nav-body section, .side-nav-body footer {
+    padding-left: 10px; }
+
+  .results .user-card, .results .project-card, .results .project-card {
+    margin: 10px auto; }
+
+  .profile-head {
+    margin-top: 50px;
+    padding-bottom: 20px; }
+    .profile-head .profile-user {
+      position: relative;
+      margin-top: 0;
+      left: 0;
+      transform: translateY(-100px); }
+      .profile-head .profile-user .row {
+        width: initial; }
+      .profile-head .profile-user .profile-pic {
+        float: none;
+        margin-right: auto; }
+        .profile-head .profile-user .profile-pic img {
+          width: 100%;
+          max-width: 250px;
+          border-radius: 50%;
+          margin: auto; }
+      .profile-head .profile-user .profile-intro .profile-name {
+        padding: 20px;
+        margin: 10px auto 10px auto;
+        font-size: 38px; }
+      .profile-head .profile-user .profile-intro .profile-quote {
+        margin-left: 0;
+        text-align: justify;
+        text-align-last: center; }
+
+  .profile-page {
+    padding-top: 0px;
+    transform: translateY(-100px);
+    margin-top: 0;
+    margin-bottom: -100px; }
+    .profile-page .profile-info {
+      max-width: 300px;
+      margin: 0 auto 15px; }
+      .profile-page .profile-info h2 {
+        font-size: 30px; }
+    .profile-page .profile-detail p {
+      margin-left: auto;
+      margin-right: auto;
+      text-align-last: center; }
+    .profile-page .profile-detail h2:first-child {
+      margin-top: 5px; }
+    .profile-page .profile-detail h2 {
+      text-align: center; }
+    .profile-page .profile-detail .skill-chips {
+      text-align: center; } }
+@media only screen and (max-width: 992px) {
+  nav .nav-wrapper {
+    padding-left: 0; }
+    nav .nav-wrapper .search-form {
+      max-width: 100%;
+      left: 0;
+      transform: translateY(100%); }
+    nav .nav-wrapper .brand-logo {
+      padding: 0; } }
+@media only screen and (max-width: 480px) {
+  .results .project-card {
+    min-width: 100%; }
+    .results .project-card .project-name {
+      font-size: 24px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      .results .project-card .project-name small {
+        display: none; } }
+
+/*# sourceMappingURL=style.css.map */

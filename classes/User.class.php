@@ -40,50 +40,6 @@
 			}
 		}
 		
-		public function setEmail($email,$password){
-			if($this->verifyPassword($password) && filter_var($email, FILTER_VALIDATE_EMAIL)){
-				// prepare statement
-				$stmt = $this->db->prepare("UPDATE Users SET email = :email WHERE id = :uid;");
-				// bind params
-				$stmt->bindParam(':email', $email);
-                $stmt->bindParam(':uid', $this->uid);
-				try{
-					// attempt to execute the sql statement
-					$stmt->execute();
-					$this->email = $email;
-					return true;
-				}
-				catch(Exception $e){
-					return false;
-				}
-			}
-			else{
-				return false;
-			}
-		}
-		
-		public function updatePassword($password, $newPassword){
-			if($this->verifyPassword($password)){
-				// prepare statement
-				$stmt = $this->db->prepare("UPDATE Users SET password = ? WHERE id = ?;");
-				// bind params
-				$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-				$stmt->bindParam(1, $newPassword);
-                $stmt->bindParam(2, $this->uid);
-				try{
-					// attempt to execute the sql statement
-					$stmt->execute();
-					return true;
-				}
-				catch(Exception $e){
-					return $e;
-				}
-			}
-			else{
-				return false;
-			}
-		}
-		
 		public function logIn($email, $password){
 			if(empty($email) || empty($password)){
 				return "Please fill in all fields.";
@@ -125,7 +81,8 @@
         
 		public function getProfile($allinfo = false, $username = false){
 			if($username == false){
-                if($allinfo){
+				// no provided username so must be looking for own profile
+                if($allinfo){					
 				    $stmt = $this->db->prepare("SELECT * FROM userProfile_all WHERE id = ? LIMIT 1");
                 } else {
                     $stmt = $this->db->prepare("SELECT * FROM userProfile_limited WHERE id = ? LIMIT 1");
@@ -253,17 +210,24 @@
                 return false;
             }
         }
+		
+		// get the percentage of profile completion
 		public function profileCompletion(){
-            $stmt = $this->db->query("SELECT linkedin, profilePic, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = $this->uid");
-            $rows = $stmt->fetch(PDO::FETCH_OBJ);
-            $completion = 0;
-            foreach($rows as $key=>$value){
-                if($value != NULL){
-                    $completion = $completion + 10;
-                }
-            }
-            
-			return $completion;
+            $stmt = $this->db->prepare("SELECT linkedin, profilePic, dateOfBirth, searching, location, virtualOnly, occupation, coverPhoto, description, intro FROM Users WHERE id = ?");
+			$stmt->bindParam(1, $this->uid);
+			try{
+				$stmt->execute();
+				$rows = $stmt->fetch(PDO::FETCH_OBJ);
+				$completion = 0;
+				foreach($rows as $key=>$value){
+					if($value != NULL){
+						$completion = $completion + 10;
+					}
+				}
+				return $completion;
+			} catch(Exception $e){
+				return false;
+			}
 		}
 		
 		public function register($email, $password, $fName, $sName = null, $uName){
@@ -468,6 +432,7 @@
 			}
 		}
 		
+		// get all project owned by this user
 		public function getProjects(){
 			$stmt = $this->db->prepare("SELECT id FROM Projects WHERE ownerID = ?");
 			$stmt->bindParam(1, $this->uid);

@@ -6,7 +6,7 @@ if(isset($_GET['username'])){
     } else {
        $user = new User();
     }
-    // check username exits
+    // check username exists
 	if($user->checkUsername($_GET['username']) == false){
 		if(isset($_SESSION['userid'])){
 			$ownProfile = false;
@@ -227,7 +227,7 @@ else{
                     <?php if($editMode){ ?>
                     <div class="input-field">
 				        <textarea class="profile-quote materialize-textarea character-counter" data-length="140"><?= (!empty($profile->intro)) ? trim($profile->intro) : "Welcome to my profile page!" ?></textarea>
-                        <label for="profile-quote">Description (long)</label>
+                        <label for="profile-quote">Intro quote</label>
                     </div>
                      <a class="btn waves-effect waves-light save-quote">
                         <i class="material-icons">check</i>
@@ -344,7 +344,7 @@ else{
 									<span class="project-capacity new badge amber" data-badge-caption="spaces">
 										<?= $project->capacity - $project->currentMembers ?>
 									</span>
-									<a href="index.php?p=userProfile&username=<?=$project->username?>"><img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?>></a>
+									<a href="index.php?p=userProfile&username=<?=$project->username?>"><img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="user profile image"></a>
 								</div>
 								<div class="card-content activator">
 									<p class="project-name activator">
@@ -387,6 +387,7 @@ else{
         </div>
 	</section>
 <?php if($ownProfile && !$editMode){
+	// user is viewing their own profile but not editing, so show the edit mode button
 	?>
 <div class="fixed-action-btn">
  	<a href="?p=userProfile&username=<?=$user->username?>&edit=true" id="edit-tap" class="btn-floating btn-large amber darken-1 tooltipped" data-position="top" data-tooltip="Click to edit profile.">
@@ -408,6 +409,7 @@ else{
 </script>
 	<?php
 } else if($editMode){
+	// user is in editmode so show the end edit button
 	?>
 <div class="fixed-action-btn">
  	<a href="?p=userProfile&username=<?=$user->username?>" id="edit-end-tap" class="btn-floating btn-large light-green darken-1 tooltipped" data-position="top" data-tooltip="Click to exit edit mode.">

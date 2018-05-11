@@ -69,7 +69,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Ellie Jones
@@ -85,7 +85,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Drew Good
@@ -101,7 +101,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Charlie Smith
@@ -131,7 +131,7 @@
 					<div class="card  hoverable sticky-action project-card left-align">
 						<div class="cover-image grey lighten-3" style="background-image: url(img/defaultbg.jpg)">
 							<span class="project-capacity new badge amber" data-badge-caption="spaces">2</span>
-							<img class="z-depth-2" src="img/default.jpg">
+							<img class="z-depth-2" src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content activator">
 							<p class="project-name activator">
@@ -169,7 +169,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Ellie Jones
@@ -185,7 +185,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Drew Good
@@ -201,7 +201,7 @@
 							<img src="img/smallbg.jpg" alt="default background">
 						</div>
 						<div class="avatar-image z-depth-2">
-							<img src="img/default.jpg">
+							<img src="img/default.jpg" alt="default user image">
 						</div>
 						<div class="card-content">
 							<p class="user-name">Charlie Smith

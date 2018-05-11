@@ -9,7 +9,7 @@ if($search !== false){
         // search projects AND users
         $db = new DB();
 		$db = $db->getPDO();
-        $stmtU = $db->prepare("SELECT id, CONCAT_WS(' ', fName, sName) AS name, occupation, profilePic, username, coverPhoto FROM userProfile_limited WHERE CONCAT_WS('',fName, sName, occupation, username, skillList) LIKE :search LIMIT 8");
+        $stmtU = $db->prepare("SELECT id, CONCAT_WS(' ', fName, sName) AS name, occupation, profilePic, username, coverPhoto FROM userProfile_limited WHERE CONCAT_WS('',fName, sName, occupation, username, skillList) LIKE :search LIMIT 8");		
 		$search = "%".trim($search)."%";
         $stmtU->bindParam(':search', $search);
         try{
@@ -91,21 +91,25 @@ if($search !== false){
 <section>
 	<div class="container">
 		<?php
-		$user = new User($_SESSION['userid']);
-        if($user->profileCompletion() < 40){
-            echo "<script>window.location.assign('index.php?p=createProfile');</script>";
-            exit;
-        }
-        else if($user->profileCompletion() < 100){
-            ?>
-		<div class="row">
-        <div class="progress">
-            <div class="determinate" style="width: <?= $user->profileCompletion(); ?>%"></div>
-        </div>        
-        <div>Profile completion: <?= $user->profileCompletion(); ?>% <a href='index.php?p=createProfile'>You're missing parts of your profile! Fill them in to help people find you!</a></div>
-		</div>
-<?php
-        } ?>
+		if(isset($_SESSION['userid'])){
+			$user = new User($_SESSION['userid']);
+			if($user->profileCompletion() < 40){
+				// if the user has completed less than 40% of their profile, automatically take them to the createProfile screen.
+				echo "<script>window.location.assign('index.php?p=createProfile');</script>";
+				exit;
+			}
+			else if($user->profileCompletion() < 100){
+				// if above 40% but not complete, just show a message to encourage the user to finish it
+				?>
+			<div class="row">
+			<div class="progress">
+				<div class="determinate" style="width: <?= $user->profileCompletion(); ?>%"></div>
+			</div>        
+			<div>Profile completion: <?= $user->profileCompletion(); ?>% <a href='index.php?p=createProfile'>You're missing parts of your profile! Fill them in to help people find you!</a></div>
+			</div>
+		<?php
+        	} 
+		}?>
 		<div class="row introw">
 			<div class="col s12">
 				<?php if($search !== false){ ?>
@@ -153,7 +157,7 @@ if($search !== false){
 									<span class="project-capacity new badge amber" data-badge-caption="spaces">
 										<?= $project->capacity - $project->currentMembers ?>
 									</span>
-									<a href="index.php?p=userProfile&username=<?=$project->username?>"><img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?>></a>
+									<a href="index.php?p=userProfile&username=<?=$project->username?>"><img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="user profile image"></a>
 								</div>
 								<div class="card-content activator">
 									<p class="project-name activator">

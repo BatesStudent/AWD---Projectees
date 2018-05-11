@@ -4,6 +4,7 @@ if(!isset($_SESSION['userid'])){
 	exit;
 } else {
 	$user = new User($_SESSION['userid']);
+	// get the projects of this user
 	$projects = $user->getProjects();
 }
 ?>
@@ -13,6 +14,7 @@ if(!isset($_SESSION['userid'])){
 			<h1>My Projects</h1>
 			<div class="col s12 results">
 				<?php 
+				// display all the projects
 				if(sizeof($projects) > 0){
 					foreach($projects as $p){
 						$project = new Project();
@@ -24,7 +26,9 @@ if(!isset($_SESSION['userid'])){
 						<span class="project-capacity new badge amber" data-badge-caption="spaces">
 							<?= $project->capacity - $project->currentMembers ?>
 						</span>
-						<a href="index.php?p=userProfile&username=<?=$project->username?>"><img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?>></a>
+						<a href="index.php?p=userProfile&username=<?=$project->username?>">
+							<img class="z-depth-2" <?php if(!empty($project->profilePic)){?>src="user_images/<?=$project->ownerID?>_img/<?=$project->profilePic?>"<?php } else { ?> src="img/default.jpg" <?php } ?> alt="user profile image">
+						</a>
 					</div>
 					<div class="card-content activator">
 						<p class="project-name activator">
@@ -57,6 +61,7 @@ if(!isset($_SESSION['userid'])){
 				<?php
 					}
 				} else {
+					// no results;
 					echo "<p>None started just yet! <a href='index.php?p=newProject'>Start one now!</a></p>";
 				}
 				?>
