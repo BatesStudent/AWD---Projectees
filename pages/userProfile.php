@@ -17,7 +17,7 @@ if(isset($_GET['username'])){
 				// get own profile and projects with all information
             	$profile = $user->getProfile(true);
 				$projects = $user->getProjects();
-				if($_GET['edit'] == "true"){
+				if(isset($_GET['edit']) && $_GET['edit'] == "true"){
                     // user wants to edit profile
 					$editMode = true;
                     if(isset($_POST['cover-upload-action'])){
@@ -220,7 +220,7 @@ else{
                             </form>
                         </div>
                     </div>
-                    <? } ?>
+                    <?php } ?>
 				</div>
 				<div class="profile-intro col l8 m12 s12 ">
 					<h1 class="profile-name grey lighten-4 z-depth-1"><?= $profile->fName . ' ' . $profile->sName ?></h1>

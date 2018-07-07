@@ -3,9 +3,9 @@
 class DB{
 
 	private $host = 'localhost'; 
-	private $db = 'rfhwrjiu_AWD';
-	private $user = 'rfhwrjiu_AWD';
-	private $pass = 'AWDonline1819';
+	private $db = 'projectees_db';
+	private $user = 'projectees_web';
+	private $pass = 'P0Nl1ne_user1';
 	private $charset = 'utf8mb4';
 	
 	

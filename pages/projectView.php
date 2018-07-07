@@ -16,7 +16,7 @@ if(isset($_GET['id'])){
 			if($projectProfile->ownerID == $user->uid){
 				$applications = $project->getApplications($projectProfile->id);
 				$ownProject = true;
-				if($_GET['edit'] == "true"){
+				if(isset($_GET['edit']) && $_GET['edit'] == "true"){
 					$editMode = true;
 					if(isset($_POST['cover-upload-action'])){
                          if($_FILES['cover-photo']['tmp_name']){
